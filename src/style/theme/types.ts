@@ -80,3 +80,14 @@ export type ZIndices = {
   dropdown: number
   modal: number
 }
+export type BaseTheme = {
+  siteWidth: number
+  isDark?: boolean
+  colors: Colors
+  breakpoints: Breakpoints
+  mediaQueries: MediaQueries
+  spacing: Spacing
+  shadows: Shadows
+  radii: Radii
+  zIndices: ZIndices
+}

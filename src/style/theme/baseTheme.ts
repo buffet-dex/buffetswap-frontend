@@ -1,8 +1,8 @@
-import { DefaultTheme } from 'styled-components'
+import { BaseTheme } from '.'
 import base from './base'
 import { AllColors } from './colors'
 
-const baseTheme: DefaultTheme = {
+const baseTheme: BaseTheme = {
   ...base,
   colors: AllColors,
 }
