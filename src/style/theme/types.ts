@@ -65,6 +65,7 @@ export type Colors = {
   disabled: string
   cards: string
   danger: string
+  third: string
   // Gradients
   gradients: Gradients
 

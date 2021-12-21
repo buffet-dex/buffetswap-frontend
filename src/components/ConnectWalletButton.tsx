@@ -1,7 +1,10 @@
 import React from 'react'
-import { Button, useWalletModal } from '@pancakeswap/uikit'
+
+import { useWalletModal } from '@pancakeswap/uikit'
+
 import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
+import Button from './_PancakeComponents/Button/Button'
 
 const ConnectWalletButton = (props) => {
   const { t } = useTranslation()
@@ -10,7 +13,7 @@ const ConnectWalletButton = (props) => {
 
   return (
     <Button onClick={onPresentConnectModal} {...props}>
-      {t('Connect Wallet')}
+      {t('Connect to Wallet')}
     </Button>
   )
 }
