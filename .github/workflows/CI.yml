@@ -17,6 +17,9 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: '16.x'
+    - uses: actions/setup-python@v2
+      with:
+        python-version: "3.x"
     - name: Get yarn cache
       id: yarn-cache
       run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -41,4 +44,6 @@ jobs:
         aws-region: us-west-2
     - name: Deploy to beta
       run: |
-        echo TODO
+        pip3 install -r requirements.txt
+        yarn build
+        ./deploy --bucket s3://beta.buffet.finance --cloudfront-id E1JI29QC15XR67
