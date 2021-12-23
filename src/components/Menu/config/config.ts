@@ -37,40 +37,20 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
     ],
   },
   {
-    label: t('Win'),
-    href: '/prediction',
-    icon: 'Trophy',
+    label: t('Cross Chain'),
+    href: '/crossChain',
+    icon: 'CrossChain',
     items: [
       {
-        label: t('Prediction (BETA)'),
-        href: '/prediction',
-      },
-      {
-        label: t('Lottery'),
-        href: '/lottery',
+        label: t('Cross Chain(BETA)'),
+        href: '/crossChainBeta',
       },
     ],
   },
   {
-    label: t('NFT'),
-    href: `${nftsBaseUrl}`,
-    icon: 'Nft',
-    items: [
-      {
-        label: t('Overview'),
-        href: `${nftsBaseUrl}`,
-      },
-      {
-        label: t('Collections'),
-        href: `${nftsBaseUrl}/collections`,
-      },
-    ],
-  },
-  {
-    label: '',
+    label: 'More',
     href: '/info',
     icon: 'More',
-    hideSubNav: true,
     items: [
       {
         label: t('Info'),

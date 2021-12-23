@@ -28,7 +28,7 @@ export const AllColors: Colors = {
   background: '#FAF5F2',
   backgroundDisabled: '#E9EAEB',
   backgroundAlt: '#FFFFFF',
-  backgroundAlt2: 'rgba(255, 255, 255, 0.7)',
+  backgroundAlt2: 'linear-gradient(79.86deg, rgba(255, 98, 63, 0.76) 3.11%, rgba(255, 47, 159, 0.67) 125.94%)',
   cards: '#FFFFFF',
   cardBorder: '#E7E3EB',
   contrast: '#191326',
@@ -41,7 +41,7 @@ export const AllColors: Colors = {
   tertiary: '#EFF4F5',
   text: '#272727',
   textDisabled: '#BDC2C4',
-  textSubtle: '#7A6EAA',
+  textSubtle: '#202020',
   disabled: '#E9EAEB',
   gradients: {
     bubblegum: 'linear-gradient(139.73deg, #E5FDFF 0%, #F3EFFF 100%)',

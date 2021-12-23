@@ -41,7 +41,7 @@ export const styleVariants = {
       bottom: 0,
       borderRadius: '16px',
       padding: '3px',
-      background: `${AllColors.third}`,
+      background: `${AllColors.secondary}`,
       '-webkit-mask': 'linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0)',
       '-webkit-mask-composite': 'destination-out',
       'mask-composite': 'exclude',
