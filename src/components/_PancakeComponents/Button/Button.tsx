@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import { Button as PancakeButton } from '@pancakeswap/uikit'
 import { variant } from 'styled-system'
