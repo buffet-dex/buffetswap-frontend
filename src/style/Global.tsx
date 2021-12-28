@@ -1,4 +1,4 @@
-import { PancakeTheme } from '@pancakeswap/uikit'
+import { PancakeTheme } from '@buffet-dex/uikit'
 import { createGlobalStyle } from 'styled-components'
 // eslint-disable-next-line import/no-unresolved
 

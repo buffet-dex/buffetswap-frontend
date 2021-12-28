@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, lightColors, Progress, Text } from '@pancakeswap/uikit'
+import { Box, lightColors, Progress, Text } from '@buffet-dex/uikit'
 import { ContextApi } from 'contexts/Localization/types'
 import { SaleStatusEnum, UserStatusEnum } from '../../types'
 

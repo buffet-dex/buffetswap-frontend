@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useWalletModal } from '@pancakeswap/uikit'
+import { useWalletModal } from '@buffet-dex/uikit'
 
 import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'

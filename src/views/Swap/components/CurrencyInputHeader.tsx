@@ -10,7 +10,7 @@ import {
   Text,
   useModal,
   ChartDisableIcon,
-} from '@pancakeswap/uikit'
+} from '@buffet-dex/uikit'
 import TransactionsModal from 'components/App/Transactions/TransactionsModal'
 import GlobalSettings from 'components/Menu/GlobalSettings'
 import { useExpertModeManager } from 'state/user/hooks'

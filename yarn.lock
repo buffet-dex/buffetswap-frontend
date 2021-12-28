@@ -1338,6 +1338,18 @@
     "@web3-react/types" "^6.0.7"
     tiny-warning "^1.0.3"
 
+"@buffet-dex/uikit@^0.1.0":
+  version "0.1.0"
+  resolved "https://npm.pkg.github.com/download/@buffet-dex/uikit/0.1.0/57fb3987dbb950777f0853cea719c086c18c8e0e504e3b00525a30d8cecf7d30#0ac43bdd2e9f6b83a54b5192671ca2b9e5341412"
+  integrity sha512-TUQRQ7AXen+R0ZFSO/capz/hQ7Dx5LIMscFIlrnroRlsWtCO9rtd5ws4CqEfjHR+eC70x1bjLMyvSq3+88avZQ==
+  dependencies:
+    "@popperjs/core" "^2.9.2"
+    "@types/lodash" "^4.14.168"
+    "@types/styled-system" "^5.1.10"
+    lodash "^4.17.20"
+    react-popper "^2.2.5"
+    styled-system "^5.1.5"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
@@ -2648,18 +2660,6 @@
     tiny-invariant "^1.1.0"
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
-
-"@pancakeswap/uikit@^0.59.0":
-  version "0.59.0"
-  resolved "https://registry.yarnpkg.com/@pancakeswap/uikit/-/uikit-0.59.0.tgz#f019490f2c57dfcc9a5324f4e662601b298342c8"
-  integrity sha512-PC4MycqLaPdU/uYkm/3thvnFopOMIbvwqpEYekZtpsMJGDQMwVZq1mQVt3Y7VY4UJCCzFGJf/gqQ2HIv9FqqRg==
-  dependencies:
-    "@popperjs/core" "^2.9.2"
-    "@types/lodash" "^4.14.168"
-    "@types/styled-system" "^5.1.10"
-    lodash "^4.17.20"
-    react-popper "^2.2.5"
-    styled-system "^5.1.5"
 
 "@pmmmwh/react-refresh-webpack-plugin@0.4.3":
   version "0.4.3"

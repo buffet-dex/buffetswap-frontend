@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button as PancakeButton } from '@pancakeswap/uikit'
+import { Button as PancakeButton } from '@buffet-dex/uikit'
 import { variant } from 'styled-system'
 import { BaseButtonProps } from './types'
 import { scaleVariants, styleVariants } from './theme'
