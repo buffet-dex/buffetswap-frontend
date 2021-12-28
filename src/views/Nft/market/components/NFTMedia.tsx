@@ -1,4 +1,4 @@
-import { Box, BoxProps } from '@pancakeswap/uikit'
+import { Box, BoxProps } from '@buffet-dex/uikit'
 import React, { FC } from 'react'
 import { NftToken } from 'state/nftMarket/types'
 import styled from 'styled-components'

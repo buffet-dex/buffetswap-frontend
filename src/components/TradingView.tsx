@@ -1,4 +1,4 @@
-import { Box, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { Box, useMatchBreakpoints } from '@buffet-dex/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useScript from 'hooks/useScript'
 import React, { useEffect, useRef } from 'react'

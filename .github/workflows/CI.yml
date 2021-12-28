@@ -35,6 +35,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-yarn-node16-
     - name: Install dependencies
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: yarn install --frozen-lockfile
     - name: Run checks
       run: |
@@ -72,6 +74,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-yarn-node16-
     - name: Install dependencies
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: yarn install --frozen-lockfile
     - name: Run checks
       run: |

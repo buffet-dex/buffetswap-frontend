@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Flex, Text, Skeleton, Button, ArrowForwardIcon } from '@pancakeswap/uikit'
+import { Flex, Text, Skeleton, Button, ArrowForwardIcon } from '@buffet-dex/uikit'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import useRefresh from 'hooks/useRefresh'

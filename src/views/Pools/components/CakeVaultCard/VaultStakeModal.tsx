@@ -12,7 +12,7 @@ import {
   CalculateIcon,
   IconButton,
   Skeleton,
-} from '@pancakeswap/uikit'
+} from '@buffet-dex/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'

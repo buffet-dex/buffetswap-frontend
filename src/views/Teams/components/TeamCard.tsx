@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardHeader, CardBody, CommunityIcon, Heading, PrizeIcon, Text } from '@pancakeswap/uikit'
+import { Card, CardHeader, CardBody, CommunityIcon, Heading, PrizeIcon, Text } from '@buffet-dex/uikit'
 import { Team } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
 import ComingSoon from './ComingSoon'

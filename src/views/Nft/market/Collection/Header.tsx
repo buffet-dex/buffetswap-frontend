@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation, useParams } from 'react-router'
-import { Text } from '@pancakeswap/uikit'
+import { Text } from '@buffet-dex/uikit'
 import { Collection } from 'state/nftMarket/types'
 import { formatNumber } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'

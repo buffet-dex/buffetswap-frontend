@@ -11,7 +11,7 @@ import {
   Progress,
   Button,
   ChevronUpIcon,
-} from '@pancakeswap/uikit'
+} from '@buffet-dex/uikit'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { Ifo, IfoStatus, PoolIds } from 'config/constants/types'
