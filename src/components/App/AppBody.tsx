@@ -4,7 +4,7 @@ import { Card } from '@buffet-dex/uikit'
 
 export const BodyWrapper = styled(Card)`
   border-radius: 24px;
-  max-width: 436px;
+  max-width: 488px;
   width: 100%;
   z-index: 1;
 `

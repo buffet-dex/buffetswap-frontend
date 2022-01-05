@@ -11,8 +11,8 @@ import { useTranslation } from 'contexts/Localization'
 
 const CardWrapper = styled(Link)`
   display: inline-block;
-  min-width: 190px;
-  margin-left: 16px;
+  min-width: 213px;
+  margin-left: 12px;
   :hover {
     cursor: pointer;
     opacity: 0.6;
@@ -22,7 +22,9 @@ const CardWrapper = styled(Link)`
 const TopMoverCard = styled(Box)`
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   border-radius: ${({ theme }) => theme.radii.card};
-  padding: 16px;
+  padding: 12px 16px;
+  background: ${({ theme }) => theme.colors.card};
+  box-shadow: 2px 4px 11px rgba(0, 0, 0, 0.12);
 `
 
 export const ScrollableRow = styled.div`
@@ -40,17 +42,19 @@ const DataCard = ({ tokenData }: { tokenData: TokenData }) => {
     <CardWrapper to={`/info/token/${tokenData.address}`}>
       <TopMoverCard>
         <Flex>
-          <Box width="32px" height="32px">
+          <Flex alignSelf="center" width="32px" height="32px">
             {/* wrapped in a box because of alignment issues between img and svg */}
             <CurrencyLogo address={tokenData.address} size="32px" />
-          </Box>
+          </Flex>
           <Box ml="16px">
-            <Text>{tokenData.symbol}</Text>
+            <Text mb="8px" fontWeight="700">
+              {tokenData.symbol}
+            </Text>
             <Flex alignItems="center">
-              <Text fontSize="14px" mr="6px" lineHeight="16px">
+              <Text fontSize="16px" fontWeight="400" mr="14px" lineHeight="16px">
                 ${formatAmount(tokenData.priceUSD)}
               </Text>
-              <Percent fontSize="14px" value={tokenData.priceUSDChange} />
+              <Percent fontSize="16px" fontWeight="400" value={tokenData.priceUSDChange} />
             </Flex>
           </Box>
         </Flex>
@@ -100,7 +104,7 @@ const TopTokenMovers: React.FC = () => {
   }
 
   return (
-    <Card my="16px">
+    <Card borderBackground="none" background="none" my="16px">
       <Text ml="16px" mt="8px">
         {t('Top Movers')}
       </Text>

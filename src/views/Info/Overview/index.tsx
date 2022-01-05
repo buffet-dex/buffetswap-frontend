@@ -113,17 +113,22 @@ const Overview: React.FC = () => {
       <ChartCardsContainer>
         <Card>
           <Box p={['16px', '16px', '24px']}>
-            <Text bold color="secondary">
+            <Text fontSize="14px" mb="14px" color="secondary">
               {t('Liquidity')}
             </Text>
-            {liquidityHover > 0 ? (
-              <Text bold fontSize="24px">
-                ${formatAmount(liquidityHover)}
+            <Flex alignItems="center">
+              {liquidityHover > 0 ? (
+                <Text bold fontSize="16px">
+                  ${formatAmount(liquidityHover)}
+                </Text>
+              ) : (
+                <Skeleton width="128px" height="36px" />
+              )}
+              <Text pl="16px" fontSize="14px">
+                {liquidityDateHover ?? currentDate}
               </Text>
-            ) : (
-              <Skeleton width="128px" height="36px" />
-            )}
-            <Text>{liquidityDateHover ?? currentDate}</Text>
+            </Flex>
+
             <Box height="250px">
               <LineChart
                 data={formattedLiquidityData}
@@ -135,17 +140,22 @@ const Overview: React.FC = () => {
         </Card>
         <Card>
           <Box p={['16px', '16px', '24px']}>
-            <Text bold color="secondary">
+            <Text fontSize="14px" mb="14px" color="secondary">
               {t('Volume 24H')}
             </Text>
-            {volumeHover > 0 ? (
-              <Text bold fontSize="24px">
-                ${formatAmount(volumeHover)}
+            <Flex alignItems="center">
+              {volumeHover > 0 ? (
+                <Text bold fontSize="16px">
+                  ${formatAmount(volumeHover)}
+                </Text>
+              ) : (
+                <Skeleton width="128px" height="36px" />
+              )}
+              <Text pl="16px" fontSize="14px">
+                {volumeDateHover ?? currentDate}
               </Text>
-            ) : (
-              <Skeleton width="128px" height="36px" />
-            )}
-            <Text>{volumeDateHover ?? currentDate}</Text>
+            </Flex>
+
             <Box height="250px">
               <BarChart data={formattedVolumeData} setHoverValue={setVolumeHover} setHoverDate={setVolumeDateHover} />
             </Box>

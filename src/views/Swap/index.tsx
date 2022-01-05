@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@buffet-dex/sdk'
 import {
-  Button,
   Text,
   ArrowDownIcon,
   Box,
@@ -11,6 +10,7 @@ import {
   IconButton,
   BottomDrawer,
   useMatchBreakpoints,
+  Button,
 } from '@buffet-dex/uikit'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
@@ -334,7 +334,6 @@ export default function Swap({ history }: RouteComponentProps) {
     true,
     'confirmSwapModal',
   )
-
   return (
     <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
       <Flex width="100%" justifyContent="center" position="relative">
@@ -373,7 +372,6 @@ export default function Swap({ history }: RouteComponentProps) {
               <AppBody>
                 <CurrencyInputHeader
                   title={t('Swap')}
-                  subtitle={t('Trade tokens in an instant')}
                   setIsChartDisplayed={setIsChartDisplayed}
                   isChartDisplayed={isChartDisplayed}
                 />
@@ -397,7 +395,6 @@ export default function Swap({ history }: RouteComponentProps) {
                       <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
                         <IconButton variant="light" scale="sm">
                           <ArrowDownIcon
-                            width="16px"
                             onClick={() => {
                               setApprovalSubmitted(false) // reset 2 step UI for approvals
                               onSwitchTokens()
@@ -460,13 +457,13 @@ export default function Swap({ history }: RouteComponentProps) {
                       </AutoColumn>
                     )}
                   </AutoColumn>
-                  <Box mt="1rem">
+                  <Box mt="2rem">
                     {swapIsUnsupported ? (
                       <Button width="100%" disabled mb="4px">
                         {t('Unsupported Asset')}
                       </Button>
                     ) : !account ? (
-                      <ConnectWalletButton width="100%" />
+                      <ConnectWalletButton scale="lg" width="100%" />
                     ) : showWrap ? (
                       <Button width="100%" disabled={Boolean(wrapInputError)} onClick={onWrap}>
                         {wrapInputError ??
@@ -488,6 +485,7 @@ export default function Swap({ history }: RouteComponentProps) {
                         <Button
                           variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
                           onClick={approveCallback}
+                          scale="lg"
                           disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
                           width="48%"
                         >
@@ -503,6 +501,7 @@ export default function Swap({ history }: RouteComponentProps) {
                         </Button>
                         <Button
                           variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
+                          scale="lg"
                           onClick={() => {
                             if (isExpertMode) {
                               handleSwap()
@@ -534,6 +533,7 @@ export default function Swap({ history }: RouteComponentProps) {
                     ) : (
                       <Button
                         variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
+                        scale="lg"
                         onClick={() => {
                           if (isExpertMode) {
                             handleSwap()

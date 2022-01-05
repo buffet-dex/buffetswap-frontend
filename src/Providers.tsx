@@ -1,5 +1,5 @@
 import React from 'react'
-import { ModalProvider, light } from '@buffet-dex/uikit'
+import { ModalProvider, light, dark } from '@buffet-dex/uikit'
 import { Web3ReactProvider } from '@web3-react/core'
 import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
@@ -9,14 +9,11 @@ import { LanguageProvider } from 'contexts/Localization'
 import { RefreshContextProvider } from 'contexts/RefreshContext'
 import { ToastsProvider } from 'contexts/ToastsContext'
 import store from 'state'
-import baseTheme from 'style/theme/baseTheme'
+import { useThemeManager } from 'state/user/hooks'
 
-const mergeThemes = (theme1, theme2) => {
-  const mergedTheme = { ...theme1, ...theme2 }
-  return mergedTheme
-}
 const ThemeProviderWrapper = (props) => {
-  return <ThemeProvider theme={mergeThemes(light, baseTheme)} {...props} />
+  const [isDark] = useThemeManager()
+  return <ThemeProvider theme={isDark ? dark : light} {...props} />
 }
 
 const Providers: React.FC = ({ children }) => {

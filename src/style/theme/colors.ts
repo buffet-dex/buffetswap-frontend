@@ -4,12 +4,9 @@ export const baseColors = {
   primary: '#EF5823',
   secondary: 'linear-gradient(79.95deg, #FF623F 3.11%, #FF8C38 52.98%, #FF2F9F 126.12%)',
   third: 'linear-gradient(104.3deg, #FFBB38 -0.54%, #FF2F9F 135.91%)',
-
   failure: '#ED4B9E',
-
   primaryBright: '#53DEE9',
   primaryDark: '#0098A1',
-
   success: '#1FAD7A',
   warning: '#EB4D4D',
 }
@@ -28,7 +25,8 @@ export const AllColors: Colors = {
   background: '#FAF5F2',
   backgroundDisabled: '#E9EAEB',
   backgroundAlt: '#FFFFFF',
-  backgroundAlt2: 'rgba(255, 255, 255, 0.7)',
+  backgroundAlt2: 'linear-gradient(79.86deg, rgba(255, 98, 63, 0.76) 3.11%, rgba(255, 47, 159, 0.67) 125.94%)',
+  card: '#FFFFFF',
   cards: '#FFFFFF',
   cardBorder: '#E7E3EB',
   contrast: '#191326',
@@ -41,7 +39,8 @@ export const AllColors: Colors = {
   tertiary: '#EFF4F5',
   text: '#272727',
   textDisabled: '#BDC2C4',
-  textSubtle: '#7A6EAA',
+  textSubtle: '#202020',
+  textSubtleOpacity: 'rgba(32, 32, 32, 0.5)',
   disabled: '#E9EAEB',
   gradients: {
     bubblegum: 'linear-gradient(139.73deg, #E5FDFF 0%, #F3EFFF 100%)',

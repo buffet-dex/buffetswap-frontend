@@ -62,7 +62,9 @@ export type Colors = {
   text: string
   textDisabled: string
   textSubtle: string
+  textSubtleOpacity: string
   disabled: string
+  card: string
   cards: string
   danger: string
   third: string

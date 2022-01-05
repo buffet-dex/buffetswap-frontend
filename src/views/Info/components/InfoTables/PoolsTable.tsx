@@ -8,7 +8,6 @@ import { ITEMS_PER_INFO_TABLE_PAGE } from 'config/constants/info'
 import { DoubleCurrencyLogo } from 'views/Info/components/CurrencyLogo'
 import { useTranslation } from 'contexts/Localization'
 import { ClickableColumnHeader, TableWrapper, PageButtons, Arrow, Break } from './shared'
-
 /**
  *  Columns on different layouts
  *  5 = | # | Pool | TVL | Volume 24H | Volume 7D |
@@ -20,18 +19,18 @@ const ResponsiveGrid = styled.div`
   display: grid;
   grid-gap: 1em;
   align-items: center;
-  grid-template-columns: 20px 3.5fr repeat(5, 1fr);
+  grid-template-columns: 55px 1.2fr repeat(5, 1fr);
 
   padding: 0 24px;
   @media screen and (max-width: 900px) {
-    grid-template-columns: 20px 1.5fr repeat(3, 1fr);
+    grid-template-columns: 55px 1.5fr repeat(3, 1fr);
     & :nth-child(4),
     & :nth-child(5) {
       display: none;
     }
   }
   @media screen and (max-width: 500px) {
-    grid-template-columns: 20px 1.5fr repeat(1, 1fr);
+    grid-template-columns: 55px 1.5fr repeat(1, 1fr);
     & :nth-child(4),
     & :nth-child(5),
     & :nth-child(6),
@@ -83,22 +82,25 @@ const TableLoader: React.FC = () => (
   </>
 )
 
-const DataRow = ({ poolData, index }: { poolData: PoolData; index: number }) => {
+const DataRow = ({ poolData }: { poolData: PoolData }) => {
+  const options = {
+    notation: 'standard',
+  }
   return (
     <LinkWrapper to={`/info/pool/${poolData.address}`}>
       <ResponsiveGrid>
-        <Text>{index + 1}</Text>
+        <DoubleCurrencyLogo size={30} address0={poolData.token0.address} address1={poolData.token1.address} />
+
         <Flex>
-          <DoubleCurrencyLogo address0={poolData.token0.address} address1={poolData.token1.address} />
-          <Text ml="8px">
+          <Text fontSize="16px" fontWeight="700" ml="8px">
             {poolData.token0.symbol}/{poolData.token1.symbol}
           </Text>
         </Flex>
-        <Text>${formatAmount(poolData.volumeUSD)}</Text>
-        <Text>${formatAmount(poolData.volumeUSDWeek)}</Text>
-        <Text>${formatAmount(poolData.lpFees24h)}</Text>
+        <Text>${formatAmount(poolData.volumeUSD, options)}</Text>
+        <Text>${formatAmount(poolData.volumeUSDWeek, options)}</Text>
+        <Text>${formatAmount(poolData.lpFees24h, options)}</Text>
         <Text>{formatAmount(poolData.lpApr7d)}%</Text>
-        <Text>${formatAmount(poolData.liquidityUSD)}</Text>
+        <Text>${formatAmount(poolData.liquidityUSD, options)}</Text>
       </ResponsiveGrid>
     </LinkWrapper>
   )
@@ -160,66 +162,36 @@ const PoolTable: React.FC<PoolTableProps> = ({ poolDatas, loading }) => {
   return (
     <TableWrapper>
       <ResponsiveGrid>
-        <Text color="secondary" fontSize="12px" bold>
+        <Text color="textSubtle" fontSize="14px">
           #
         </Text>
-        <Text color="secondary" fontSize="12px" bold textTransform="uppercase">
+        <Text color="textSubtle" fontSize="14px">
           {t('Pool')}
         </Text>
-        <ClickableColumnHeader
-          color="secondary"
-          fontSize="12px"
-          bold
-          onClick={() => handleSort(SORT_FIELD.volumeUSD)}
-          textTransform="uppercase"
-        >
+        <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.volumeUSD)}>
           {t('Volume 24H')} {arrow(SORT_FIELD.volumeUSD)}
         </ClickableColumnHeader>
-        <ClickableColumnHeader
-          color="secondary"
-          fontSize="12px"
-          bold
-          onClick={() => handleSort(SORT_FIELD.volumeUSDWeek)}
-          textTransform="uppercase"
-        >
+        <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.volumeUSDWeek)}>
           {t('Volume 7D')} {arrow(SORT_FIELD.volumeUSDWeek)}
         </ClickableColumnHeader>
-        <ClickableColumnHeader
-          color="secondary"
-          fontSize="12px"
-          bold
-          onClick={() => handleSort(SORT_FIELD.lpFees24h)}
-          textTransform="uppercase"
-        >
+        <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.lpFees24h)}>
           {t('LP reward fees 24H')} {arrow(SORT_FIELD.lpFees24h)}
         </ClickableColumnHeader>
-        <ClickableColumnHeader
-          color="secondary"
-          fontSize="12px"
-          bold
-          onClick={() => handleSort(SORT_FIELD.lpApr7d)}
-          textTransform="uppercase"
-        >
+        <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.lpApr7d)}>
           {t('LP reward APR')} {arrow(SORT_FIELD.lpApr7d)}
         </ClickableColumnHeader>
-        <ClickableColumnHeader
-          color="secondary"
-          fontSize="12px"
-          bold
-          onClick={() => handleSort(SORT_FIELD.liquidityUSD)}
-          textTransform="uppercase"
-        >
+        <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.liquidityUSD)}>
           {t('Liquidity')} {arrow(SORT_FIELD.liquidityUSD)}
         </ClickableColumnHeader>
       </ResponsiveGrid>
       <Break />
       {sortedPools.length > 0 ? (
         <>
-          {sortedPools.map((poolData, i) => {
+          {sortedPools.map((poolData) => {
             if (poolData) {
               return (
                 <React.Fragment key={poolData.address}>
-                  <DataRow index={(page - 1) * ITEMS_PER_INFO_TABLE_PAGE + i} poolData={poolData} />
+                  <DataRow poolData={poolData} />
                   <Break />
                 </React.Fragment>
               )

@@ -28,11 +28,12 @@ const LabelRow = styled.div`
   color: ${({ theme }) => theme.colors.text};
   font-size: 0.75rem;
   line-height: 1rem;
-  padding: 0.75rem 1rem 0 1rem;
+  padding: 1.25em 0.75rem 1.25rem 2rem;
+  width: 100%;
 `
 const InputPanel = styled.div`
   display: flex;
-  flex-flow: column nowrap;
+  // flex-flow: column nowrap;
   position: relative;
   border-radius: '20px';
   background-color: ${({ theme }) => theme.colors.backgroundAlt};
@@ -42,6 +43,9 @@ const Container = styled.div`
   border-radius: 16px;
   background-color: ${({ theme }) => theme.colors.input};
   box-shadow: ${({ theme }) => theme.shadows.inset};
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `
 interface CurrencyInputPanelProps {
   value: string
@@ -121,7 +125,12 @@ export default function CurrencyInputPanel({
           </Flex>
         </CurrencySelectButton>
         {account && (
-          <Text onClick={onMax} color="textSubtle" fontSize="14px" style={{ display: 'inline', cursor: 'pointer' }}>
+          <Text
+            onClick={onMax}
+            color="textSubtleOpacity"
+            fontSize="14px"
+            style={{ display: 'inline', cursor: 'pointer' }}
+          >
             {!hideBalance && !!currency
               ? t('Balance: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? t('Loading') })
               : ' -'}
@@ -138,6 +147,7 @@ export default function CurrencyInputPanel({
                 onUserInput={(val) => {
                   onUserInput(val)
                 }}
+                align="left"
               />
             </RowBetween>
           </LabelRow>

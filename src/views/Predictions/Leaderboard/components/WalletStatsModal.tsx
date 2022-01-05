@@ -80,7 +80,7 @@ const WalletStatsModal: React.FC<WalletStatsModalProps> = ({ account, onDismiss,
           </Box>
         </Flex>
         <IconButton variant="text" onClick={handleDismiss} aria-label="Close the dialog">
-          <CloseIcon color="text" width="24px" />
+          <CloseIcon color="textSubtleOpacity" width="24px" />
         </IconButton>
       </ModalHeader>
       {result === null ? (

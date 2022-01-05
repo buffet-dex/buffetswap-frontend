@@ -16,7 +16,7 @@ export interface SalesSectionProps {
   bodyText: string
   reverse: boolean
   primaryButton: SalesSectionButton
-  secondaryButton: SalesSectionButton
+  secondaryButton?: SalesSectionButton
   images: CompositeImageProps
 }
 
@@ -43,32 +43,33 @@ const SalesSection: React.FC<SalesSectionProps> = (props) => {
           alignSelf={['flex-start', null, null, 'center']}
         >
           <ColoredWordHeading text={headingTranslatedText} />
-          <Text color="textSubtle" mb="24px">
+          <Text fontWeight="500" fontSize="18px" color="textSubtleOpacity" mb="32px">
             {bodyTranslatedText}
           </Text>
           <Flex>
             <Button mr="16px">
               {primaryButton.external ? (
                 <Link external href={primaryButton.to}>
-                  <Text color="card" bold fontSize="16px">
+                  <Text color="card" fontWeight="700" fontSize="18px">
                     {t(primaryButton.text)}
                   </Text>
                 </Link>
               ) : (
                 <RouterLink to={primaryButton.to}>
-                  <Text color="card" bold fontSize="16px">
+                  <Text color="card" bold fontWeight="700" fontSize="18px">
                     {t(primaryButton.text)}
                   </Text>
                 </RouterLink>
               )}
             </Button>
-            {secondaryButton.external ? (
-              <Link external href={secondaryButton.to}>
-                {t(secondaryButton.text)}
-              </Link>
-            ) : (
-              <RouterLink to={secondaryButton.to}>{t(secondaryButton.text)}</RouterLink>
-            )}
+            {secondaryButton &&
+              (secondaryButton.external ? (
+                <Link external href={secondaryButton.to}>
+                  {t(secondaryButton.text)}
+                </Link>
+              ) : (
+                <RouterLink to={secondaryButton.to}>{t(secondaryButton.text)}</RouterLink>
+              ))}
           </Flex>
         </Flex>
         <Flex

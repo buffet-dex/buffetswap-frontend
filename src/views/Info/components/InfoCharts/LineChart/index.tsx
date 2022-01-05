@@ -37,7 +37,7 @@ const LineChart = ({ data, setHoverValue, setHoverDate }: LineChartProps) => {
     <ResponsiveContainer>
       <AreaChart
         data={data}
-        width={300}
+        width={459}
         height={308}
         margin={{
           top: 5,
@@ -50,29 +50,24 @@ const LineChart = ({ data, setHoverValue, setHoverDate }: LineChartProps) => {
           if (setHoverValue) setHoverValue(undefined)
         }}
       >
-        <defs>
-          <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor={theme.colors.inputSecondary} stopOpacity={0.5} />
-            <stop offset="100%" stopColor={theme.colors.secondary} stopOpacity={0} />
-          </linearGradient>
-        </defs>
         <XAxis
           dataKey="time"
           axisLine={false}
           tickLine={false}
           tickFormatter={(time) => time.toLocaleDateString(undefined, { day: '2-digit' })}
-          minTickGap={10}
+          minTickGap={7}
+          fontSize="10px"
+          tick={{ fill: '#202020', fontWeight: 700 }}
         />
         <YAxis
           dataKey="value"
-          tickCount={6}
-          scale="linear"
+          tickCount={8}
           axisLine={false}
           tickLine={false}
-          fontSize="12px"
+          fontSize="10px"
           tickFormatter={(val) => `$${formatAmount(val)}`}
           orientation="right"
-          tick={{ dx: 10, fill: theme.colors.textSubtle }}
+          tick={{ dx: 25, fill: '#202020', fontWeight: 700 }}
         />
         <Tooltip
           cursor={{ stroke: theme.colors.secondary }}
@@ -86,7 +81,7 @@ const LineChart = ({ data, setHoverValue, setHoverDate }: LineChartProps) => {
             />
           )}
         />
-        <Area dataKey="value" type="monotone" stroke={theme.colors.secondary} fill="url(#gradient)" strokeWidth={2} />
+        <Area dataKey="value" type="linear" stroke="#EF5823" fill="none" strokeWidth={2} />
       </AreaChart>
     </ResponsiveContainer>
   )

@@ -28,12 +28,12 @@ const Footer = styled.div`
 `
 
 const StyledModalContainer = styled(ModalContainer)`
-  max-width: 420px;
+  max-width: 483px;
   width: 100%;
 `
 
 const StyledModalBody = styled(ModalBody)`
-  padding: 24px;
+  padding: 36px;
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;

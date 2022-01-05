@@ -9,7 +9,7 @@ import QuestionHelper from '../QuestionHelper'
 
 interface Props {
   title: string
-  subtitle: string
+  subtitle?: string
   helper?: string
   backTo?: string
   noConfig?: boolean
@@ -28,19 +28,27 @@ const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig 
 
   return (
     <AppHeaderContainer>
-      <Flex alignItems="center" mr={noConfig ? 0 : '16px'}>
-        {backTo && (
+      {backTo && (
+        <Flex>
           <IconButton as={Link} to={backTo}>
             <ArrowBackIcon width="32px" />
           </IconButton>
-        )}
+        </Flex>
+      )}
+      {/* <Flex width='100%' justifyContent='center' alignItems="center" mr={noConfig ? 0 : '16px'} pl={backTo ? 0 : '32px'}> */}
+      <Flex
+        width="100%"
+        justifyContent={subtitle ? 'flex-start' : 'center'}
+        alignItems="center"
+        pl={backTo ? 0 : '48px'}
+      >
         <Flex flexDirection="column">
-          <Heading as="h2" mb="8px">
+          <Heading scale="lg" fontWeight="400" as="h2" mb="8px">
             {title}
           </Heading>
           <Flex alignItems="center">
             {helper && <QuestionHelper text={helper} mr="4px" placement="top-start" />}
-            <Text color="textSubtle" fontSize="14px">
+            <Text color="textSubtleOpacity" fontSize="16px" fontWeight={700}>
               {subtitle}
             </Text>
           </Flex>
