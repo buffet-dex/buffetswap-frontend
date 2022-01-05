@@ -1,5 +1,5 @@
 import React, { useEffect, Dispatch, SetStateAction } from 'react'
-import { ResponsiveContainer, XAxis, YAxis, Tooltip, AreaChart, Area } from 'recharts'
+import { ResponsiveContainer, XAxis, YAxis, Tooltip, AreaChart, Area, CartesianGrid } from 'recharts'
 import useTheme from 'hooks/useTheme'
 import { LineChartLoader } from 'views/Info/components/ChartLoaders'
 import { PairDataTimeWindowEnum } from 'state/swap/types'
@@ -35,7 +35,7 @@ const HoverUpdater = ({ locale, payload, setHoverValue, setHoverDate }) => {
 const getChartColors = ({ isChangePositive }) => {
   return isChangePositive
     ? { gradient1: '#00E7B0', gradient2: '#0C8B6C', stroke: '#31D0AA' }
-    : { gradient1: '#ED4B9E', gradient2: '#ED4B9E', stroke: '#ED4B9E ' }
+    : { gradient1: '#ED4B9E', gradient2: '#ED4B9E', stroke: '#EB4D4D ' }
 }
 
 const dateFormattingByTimewindow: Record<PairDataTimeWindowEnum, Intl.DateTimeFormatOptions> = {
@@ -75,6 +75,7 @@ const LineChart = ({ data, setHoverValue, setHoverDate, isChangePositive, timeWi
     <ResponsiveContainer>
       <AreaChart
         data={data}
+        height={100}
         margin={{
           top: 5,
           right: 0,
@@ -100,6 +101,7 @@ const LineChart = ({ data, setHoverValue, setHoverDate, isChangePositive, timeWi
           minTickGap={8}
         />
         <YAxis dataKey="value" axisLine={false} tickLine={false} domain={['auto', 'auto']} hide />
+        <CartesianGrid horizontal={false} strokeDasharray="3 3" fill="rgba(32, 32, 32, 0.02)" />
         <Tooltip
           cursor={{ stroke: theme.colors.textDisabled }}
           contentStyle={{ display: 'none' }}
@@ -112,7 +114,7 @@ const LineChart = ({ data, setHoverValue, setHoverDate, isChangePositive, timeWi
             />
           )}
         />
-        <Area dataKey="value" type="linear" stroke={colors.stroke} fill="url(#gradient)" strokeWidth={2} />
+        <Area dataKey="value" type="linear" stroke={colors.stroke} fill="none" strokeWidth={4} />
       </AreaChart>
     </ResponsiveContainer>
   )

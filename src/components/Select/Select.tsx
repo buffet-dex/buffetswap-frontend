@@ -40,11 +40,13 @@ const DropDownContainer = styled(Box)<{ isOpen: boolean }>`
   position: relative;
   background: ${({ theme }) => theme.colors.input};
   border-radius: 16px;
-  height: 40px;
+  height: 56px;
   min-width: 136px;
   user-select: none;
   z-index: 20;
-
+  > ${DropDownHeader} {
+    height: 56px;
+  }
   ${({ theme }) => theme.mediaQueries.sm} {
     min-width: 168px;
   }
@@ -141,7 +143,7 @@ const Select: React.FunctionComponent<SelectProps> = ({
   return (
     <DropDownContainer isOpen={isOpen} {...props}>
       <DropDownHeader onClick={toggling}>
-        <Text>{options[selectedOptionIndex].label}</Text>
+        <Text fontWeight="700">{options[selectedOptionIndex].label}</Text>
       </DropDownHeader>
       <ArrowDropDownIcon color="text" onClick={toggling} />
       <DropDownListContainer>

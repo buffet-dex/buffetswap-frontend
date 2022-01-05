@@ -31,7 +31,7 @@
   "dependencies": {
     "@binance-chain/bsc-connector": "^1.0.0",
     "@buffet-dex/sdk": "^1.0.2",
-    "@buffet-dex/uikit": "^0.1.0",
+    "@buffet-dex/uikit": "^0.2.0",
     "@ethersproject/experimental": "^5.0.1",
     "@reduxjs/toolkit": "^1.5.0",
     "@types/multicodec": "^1.0.0",

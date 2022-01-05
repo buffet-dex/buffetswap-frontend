@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { Pair } from '@buffet-dex/sdk'
-import { Text, Flex, CardBody, CardFooter, Button, AddIcon } from '@buffet-dex/uikit'
+import { Text, Flex, CardBody, CardFooter, Button } from '@buffet-dex/uikit'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -14,7 +14,33 @@ import { AppHeader, AppBody } from '../../components/App'
 import Page from '../Page'
 
 const Body = styled(CardBody)`
-  background-color: ${({ theme }) => theme.colors.dropdownDeep};
+  background: rgba(32, 32, 32, 0.02);
+  border-radius: 16px;
+  width: 80.12%;
+  height: 231px;
+  margin: 40px auto 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  #import-pool-link {
+    margin-top: 24px;
+    background: rgba(239, 88, 35, 0.05);
+    a {
+      background: linear-gradient(79.95deg, #ff623f 3.11%, #ff8c38 52.98%, #ff2f9f 126.12%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+`
+const JoinPoolButton = styled(Button)`
+  a{
+    font-size:18px;
+    font-weight: 400;
+  }
+}
 `
 
 export default function Pool() {
@@ -54,14 +80,14 @@ export default function Pool() {
   const renderBody = () => {
     if (!account) {
       return (
-        <Text color="textSubtle" textAlign="center">
+        <Text fontSize="18px" fontWeight="700" color="textSubtleOpacity" textAlign="center">
           {t('Connect to a wallet to view your liquidity.')}
         </Text>
       )
     }
     if (v2IsLoading) {
       return (
-        <Text color="textSubtle" textAlign="center">
+        <Text color="textSubtleOpacity" textAlign="center">
           <Dots>{t('Loading')}</Dots>
         </Text>
       )
@@ -76,7 +102,7 @@ export default function Pool() {
       ))
     }
     return (
-      <Text color="textSubtle" textAlign="center">
+      <Text color="textSubtleOpacity" textAlign="center">
         {t('No liquidity found.')}
       </Text>
     )
@@ -85,7 +111,7 @@ export default function Pool() {
   return (
     <Page>
       <AppBody>
-        <AppHeader title={t('Your Liquidity')} subtitle={t('Remove liquidity to receive tokens back')} />
+        <AppHeader title={t('Liquidity')} />
         <Body>
           {renderBody()}
           {account && !v2IsLoading && (
@@ -93,16 +119,16 @@ export default function Pool() {
               <Text color="textSubtle" mb="8px">
                 {t("Don't see a pool you joined?")}
               </Text>
-              <Button id="import-pool-link" variant="secondary" scale="sm" as={Link} to="/find">
-                {t('Find other LP tokens')}
+              <Button id="import-pool-link" variant="primary" scale="md">
+                <Link to="/find">{t('Find other LP tokens')}</Link>
               </Button>
             </Flex>
           )}
         </Body>
-        <CardFooter style={{ textAlign: 'center' }}>
-          <Button id="join-pool-button" as={Link} to="/add" width="100%" startIcon={<AddIcon color="white" />}>
-            {t('Add Liquidity')}
-          </Button>
+        <CardFooter p="40px 48px 48px" style={{ textAlign: 'center' }}>
+          <JoinPoolButton scale="lg" id="join-pool-button" width="100%">
+            <Link to="/find"> {t('Add Liquidity')}</Link>
+          </JoinPoolButton>
         </CardFooter>
       </AppBody>
     </Page>

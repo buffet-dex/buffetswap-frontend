@@ -73,18 +73,19 @@ const Chart = ({ data, setHoverValue, setHoverDate }: LineChartProps) => {
           tickLine={false}
           tickFormatter={(time) => time.toLocaleDateString(undefined, { day: '2-digit' })}
           minTickGap={10}
+          tick={{ fill: theme.colors.textSubtle, fontWeight: 700 }}
+          fontSize="10px"
         />
         <YAxis
           dataKey="value"
-          tickCount={6}
-          scale="linear"
+          tickCount={8}
           axisLine={false}
           tickLine={false}
           color={theme.colors.textSubtle}
-          fontSize="12px"
+          fontSize="10px"
           tickFormatter={(val) => `$${formatAmount(val)}`}
           orientation="right"
-          tick={{ dx: 10, fill: theme.colors.textSubtle }}
+          tick={{ dx: 25, fill: theme.colors.textSubtle, fontWeight: 700 }}
         />
         <Tooltip
           cursor={{ fill: theme.colors.backgroundDisabled }}

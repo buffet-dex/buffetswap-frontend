@@ -25,10 +25,14 @@ enum Fields {
 }
 
 const StyledButton = styled(Button)`
-  background-color: ${({ theme }) => theme.colors.input};
+  background: rgba(32, 32, 32, 0.03);
   color: ${({ theme }) => theme.colors.text};
   box-shadow: none;
   border-radius: 16px;
+  padding: 19px;
+`
+const PoolFinderHeader = styled(AppHeader)`
+  align-items: start;
 `
 
 export default function PoolFinder() {
@@ -92,7 +96,7 @@ export default function PoolFinder() {
   return (
     <Page>
       <AppBody>
-        <AppHeader title={t('Import Pool')} subtitle={t('Import an existing pool')} backTo="/pool" />
+        <PoolFinderHeader title={t('Import Pool')} subtitle={t('Import an existing pool')} backTo="/pool" />
         <AutoColumn style={{ padding: '1rem' }} gap="md">
           <StyledButton
             endIcon={<ChevronDownIcon />}
@@ -103,11 +107,15 @@ export default function PoolFinder() {
           >
             {currency0 ? (
               <Row>
-                <CurrencyLogo currency={currency0} />
-                <Text ml="8px">{currency0.symbol}</Text>
+                <CurrencyLogo size="32px" currency={currency0} />
+                <Text fontSize="18px" fontWeight={700} ml="8px">
+                  {currency0.symbol}
+                </Text>
               </Row>
             ) : (
-              <Text ml="8px">{t('Select a Token')}</Text>
+              <Text fontSize="18px" fontWeight={700} ml="8px">
+                {t('Select a Token')}
+              </Text>
             )}
           </StyledButton>
 
@@ -125,10 +133,14 @@ export default function PoolFinder() {
             {currency1 ? (
               <Row>
                 <CurrencyLogo currency={currency1} />
-                <Text ml="8px">{currency1.symbol}</Text>
+                <Text fontSize="18px" fontWeight={700} ml="8px">
+                  {currency1.symbol}
+                </Text>
               </Row>
             ) : (
-              <Text as={Row}>{t('Select a Token')}</Text>
+              <Text fontSize="18px" fontWeight={700} as={Row}>
+                {t('Select a Token')}
+              </Text>
             )}
           </StyledButton>
 

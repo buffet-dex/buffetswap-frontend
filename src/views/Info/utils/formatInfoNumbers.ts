@@ -22,7 +22,7 @@ export type formatAmountNotation = 'compact' | 'standard'
 export const formatAmount = (
   amount: number | undefined,
   options?: {
-    notation?: formatAmountNotation
+    notation?: formatAmountNotation | string
     displayThreshold?: number
     tokenPrecision?: boolean
     isInteger?: boolean

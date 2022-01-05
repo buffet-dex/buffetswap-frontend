@@ -24,17 +24,17 @@ const ResponsiveGrid = styled.div`
 
   padding: 0 24px;
 
-  grid-template-columns: 20px 3fr repeat(4, 1fr);
+  grid-template-columns: 30px 1.5fr repeat(4, 1fr);
 
   @media screen and (max-width: 900px) {
-    grid-template-columns: 20px 2fr repeat(3, 1fr);
+    grid-template-columns: 30px 2fr repeat(3, 1fr);
     & :nth-child(4) {
       display: none;
     }
   }
 
   @media screen and (max-width: 800px) {
-    grid-template-columns: 20px 2fr repeat(2, 1fr);
+    grid-template-columns: 30px 2fr repeat(2, 1fr);
     & :nth-child(6) {
       display: none;
     }
@@ -86,30 +86,33 @@ const TableLoader: React.FC = () => {
   )
 }
 
-const DataRow: React.FC<{ tokenData: TokenData; index: number }> = ({ tokenData, index }) => {
+const DataRow: React.FC<{ tokenData: TokenData }> = ({ tokenData }) => {
   const { isXs, isSm } = useMatchBreakpoints()
   return (
     <LinkWrapper to={`/info/token/${tokenData.address}`}>
       <ResponsiveGrid>
         <Flex>
-          <Text>{index + 1}</Text>
+          <ResponsiveLogo size="30px" address={tokenData.address} />
         </Flex>
         <Flex alignItems="center">
-          <ResponsiveLogo address={tokenData.address} />
           {(isXs || isSm) && <Text ml="8px">{tokenData.symbol}</Text>}
           {!isXs && !isSm && (
             <Flex marginLeft="10px">
-              <Text>{tokenData.name}</Text>
-              <Text ml="8px">({tokenData.symbol})</Text>
+              <Text fontSize="16px" fontWeight="700">
+                {tokenData.name}
+              </Text>
+              <Text fontSize="16px" fontWeight="700" ml="8px">
+                ({tokenData.symbol})
+              </Text>
             </Flex>
           )}
         </Flex>
-        <Text fontWeight={400}>${formatAmount(tokenData.priceUSD, { notation: 'standard' })}</Text>
-        <Text fontWeight={400}>
-          <Percent value={tokenData.priceUSDChange} fontWeight={400} />
+        <Text>${formatAmount(tokenData.priceUSD, { notation: 'standard' })}</Text>
+        <Text>
+          <Percent value={tokenData.priceUSDChange} />
         </Text>
-        <Text fontWeight={400}>${formatAmount(tokenData.volumeUSD)}</Text>
-        <Text fontWeight={400}>${formatAmount(tokenData.liquidityUSD)}</Text>
+        <Text>${formatAmount(tokenData.volumeUSD)}</Text>
+        <Text>${formatAmount(tokenData.liquidityUSD)}</Text>
       </ResponsiveGrid>
     </LinkWrapper>
   )
@@ -185,52 +188,22 @@ const TokenTable: React.FC<{
   return (
     <TableWrapper>
       <ResponsiveGrid>
-        <Text color="secondary" fontSize="12px" bold>
+        <Text color="textSubtle" fontSize="14px">
           #
         </Text>
-        <ClickableColumnHeader
-          color="secondary"
-          fontSize="12px"
-          bold
-          onClick={() => handleSort(SORT_FIELD.name)}
-          textTransform="uppercase"
-        >
+        <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.name)}>
           {t('Name')} {arrow(SORT_FIELD.name)}
         </ClickableColumnHeader>
-        <ClickableColumnHeader
-          color="secondary"
-          fontSize="12px"
-          bold
-          onClick={() => handleSort(SORT_FIELD.priceUSD)}
-          textTransform="uppercase"
-        >
+        <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.priceUSD)}>
           {t('Price')} {arrow(SORT_FIELD.priceUSD)}
         </ClickableColumnHeader>
-        <ClickableColumnHeader
-          color="secondary"
-          fontSize="12px"
-          bold
-          onClick={() => handleSort(SORT_FIELD.priceUSDChange)}
-          textTransform="uppercase"
-        >
+        <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.priceUSDChange)}>
           {t('Price Change')} {arrow(SORT_FIELD.priceUSDChange)}
         </ClickableColumnHeader>
-        <ClickableColumnHeader
-          color="secondary"
-          fontSize="12px"
-          bold
-          onClick={() => handleSort(SORT_FIELD.volumeUSD)}
-          textTransform="uppercase"
-        >
+        <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.volumeUSD)}>
           {t('Volume 24H')} {arrow(SORT_FIELD.volumeUSD)}
         </ClickableColumnHeader>
-        <ClickableColumnHeader
-          color="secondary"
-          fontSize="12px"
-          bold
-          onClick={() => handleSort(SORT_FIELD.liquidityUSD)}
-          textTransform="uppercase"
-        >
+        <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.liquidityUSD)}>
           {t('Liquidity')} {arrow(SORT_FIELD.liquidityUSD)}
         </ClickableColumnHeader>
       </ResponsiveGrid>
@@ -238,11 +211,11 @@ const TokenTable: React.FC<{
       <Break />
       {sortedTokens.length > 0 ? (
         <>
-          {sortedTokens.map((data, i) => {
+          {sortedTokens.map((data) => {
             if (data) {
               return (
                 <React.Fragment key={data.address}>
-                  <DataRow index={(page - 1) * MAX_ITEMS + i} tokenData={data} />
+                  <DataRow tokenData={data} />
                   <Break />
                 </React.Fragment>
               )

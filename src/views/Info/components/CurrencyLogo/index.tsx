@@ -10,6 +10,7 @@ const StyledLogo = styled(LogoLoader)<{ size: string }>`
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
   background-color: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.text};
+  border: 1px solid white;
 `
 
 export const CurrencyLogo: React.FC<{
@@ -32,7 +33,15 @@ const DoubleCurrencyWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 32px;
+  width: 60px;
+  div: last-child {
+    transform: translateX(-5px);
+
+    border-radius:100%;
+    }
+
+
+}
 `
 
 interface DoubleCurrencyLogoProps {
@@ -44,8 +53,16 @@ interface DoubleCurrencyLogoProps {
 export const DoubleCurrencyLogo: React.FC<DoubleCurrencyLogoProps> = ({ address0, address1, size = 16 }) => {
   return (
     <DoubleCurrencyWrapper>
-      {address0 && <CurrencyLogo address={address0} size={`${size.toString()}px`} />}
-      {address1 && <CurrencyLogo address={address1} size={`${size.toString()}px`} />}
+      {address0 && (
+        <div style={{ width: size, height: size }}>
+          <CurrencyLogo address={address0} size={`${size.toString()}px`} />
+        </div>
+      )}
+      {address1 && (
+        <div style={{ width: size, height: size }}>
+          <CurrencyLogo address={address1} size={`${size.toString()}px`} />
+        </div>
+      )}
     </DoubleCurrencyWrapper>
   )
 }

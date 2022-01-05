@@ -101,7 +101,7 @@ const DataRow: React.FC<{ transaction: Transaction }> = ({ transaction }) => {
 
   return (
     <ResponsiveGrid>
-      <LinkExternal href={getBscScanLink(transaction.hash, 'transaction')}>
+      <LinkExternal color="textSubtle" href={getBscScanLink(transaction.hash, 'transaction')}>
         <Text>
           {transaction.type === TransactionType.MINT
             ? t('Add %token0% and %token1%', { token0: transaction.token0Symbol, token1: transaction.token1Symbol })
@@ -117,7 +117,7 @@ const DataRow: React.FC<{ transaction: Transaction }> = ({ transaction }) => {
       <Text>
         <Text>{`${formatAmount(abs1)} ${transaction.token1Symbol}`}</Text>
       </Text>
-      <LinkExternal href={getBscScanLink(transaction.sender, 'address')}>
+      <LinkExternal color="#F2C00D" href={getBscScanLink(transaction.sender, 'address')}>
         {truncateHash(transaction.sender)}
       </LinkExternal>
       <Text>{formatDistanceToNowStrict(parseInt(transaction.timestamp, 10) * 1000)}</Text>
@@ -207,75 +207,53 @@ const TransactionTable: React.FC<{
         <Flex flexDirection={['column', 'row']}>
           <RadioGroup onClick={() => handleFilter(undefined)}>
             <Radio onChange={() => null} scale="sm" checked={txFilter === undefined} />
-            <Text ml="8px">{t('All')}</Text>
+            <Text fontSize="16px" fontWeight="700" ml="8px">
+              {t('All')}
+            </Text>
           </RadioGroup>
 
           <RadioGroup onClick={() => handleFilter(TransactionType.SWAP)}>
             <Radio onChange={() => null} scale="sm" checked={txFilter === TransactionType.SWAP} />
-            <Text ml="8px">{t('Swaps')}</Text>
+            <Text fontSize="16px" fontWeight="700" ml="8px">
+              {t('Swaps')}
+            </Text>
           </RadioGroup>
         </Flex>
 
         <Flex flexDirection={['column', 'row']}>
           <RadioGroup onClick={() => handleFilter(TransactionType.MINT)}>
             <Radio onChange={() => null} scale="sm" checked={txFilter === TransactionType.MINT} />
-            <Text ml="8px">{t('Adds')}</Text>
+            <Text fontSize="16px" fontWeight="700" ml="8px">
+              {t('Adds')}
+            </Text>
           </RadioGroup>
 
           <RadioGroup onClick={() => handleFilter(TransactionType.BURN)}>
             <Radio onChange={() => null} scale="sm" checked={txFilter === TransactionType.BURN} />
-            <Text ml="8px">{t('Removes')}</Text>
+            <Text fontSize="16px" fontWeight="700" ml="8px">
+              {t('Removes')}
+            </Text>
           </RadioGroup>
         </Flex>
       </Flex>
       <TableWrapper>
         <ResponsiveGrid>
-          <Text color="secondary" fontSize="12px" bold textTransform="uppercase">
+          <Text color="textSubtle" fontSize="14px">
             {t('Action')}
           </Text>
-          <ClickableColumnHeader
-            color="secondary"
-            fontSize="12px"
-            bold
-            onClick={() => handleSort(SORT_FIELD.amountUSD)}
-            textTransform="uppercase"
-          >
+          <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.amountUSD)}>
             {t('Total Value')} {arrow(SORT_FIELD.amountUSD)}
           </ClickableColumnHeader>
-          <ClickableColumnHeader
-            color="secondary"
-            fontSize="12px"
-            bold
-            onClick={() => handleSort(SORT_FIELD.amountToken0)}
-            textTransform="uppercase"
-          >
+          <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.amountToken0)}>
             {t('Token Amount')} {arrow(SORT_FIELD.amountToken0)}
           </ClickableColumnHeader>
-          <ClickableColumnHeader
-            color="secondary"
-            fontSize="12px"
-            bold
-            onClick={() => handleSort(SORT_FIELD.amountToken1)}
-            textTransform="uppercase"
-          >
+          <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.amountToken1)}>
             {t('Token Amount')} {arrow(SORT_FIELD.amountToken1)}
           </ClickableColumnHeader>
-          <ClickableColumnHeader
-            color="secondary"
-            fontSize="12px"
-            bold
-            onClick={() => handleSort(SORT_FIELD.sender)}
-            textTransform="uppercase"
-          >
+          <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.sender)}>
             {t('Account')} {arrow(SORT_FIELD.sender)}
           </ClickableColumnHeader>
-          <ClickableColumnHeader
-            color="secondary"
-            fontSize="12px"
-            bold
-            onClick={() => handleSort(SORT_FIELD.timestamp)}
-            textTransform="uppercase"
-          >
+          <ClickableColumnHeader color="textSubtle" fontSize="14px" onClick={() => handleSort(SORT_FIELD.timestamp)}>
             {t('Time')} {arrow(SORT_FIELD.timestamp)}
           </ClickableColumnHeader>
         </ResponsiveGrid>

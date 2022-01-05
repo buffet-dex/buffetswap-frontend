@@ -29,7 +29,7 @@ const PoolsOverview: React.FC = () => {
         {watchlistPools.length > 0 ? (
           <PoolTable poolDatas={watchlistPools} />
         ) : (
-          <Text px="24px" py="16px">
+          <Text fontSize="14px" fontWeight="400" color="textSubtleOpacity" px="32px" py="16px">
             {t('Saved pools will appear here')}
           </Text>
         )}

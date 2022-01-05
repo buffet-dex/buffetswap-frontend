@@ -6,10 +6,12 @@ import { useTranslation } from 'contexts/Localization'
 import Search from 'views/Info/components/InfoSearch'
 
 const NavWrapper = styled(Flex)`
-  background: ${({ theme }) => theme.colors.gradients.cardHeader};
+  background: ${({ theme }) => theme.colors.background};
   justify-content: space-between;
   padding: 20px 16px;
   flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
   gap: 8px;
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: 20px 40px;
