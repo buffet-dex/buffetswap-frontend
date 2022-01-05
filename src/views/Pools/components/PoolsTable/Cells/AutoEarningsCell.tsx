@@ -31,12 +31,12 @@ const AutoEarningsCell: React.FC<AutoEarningsCellProps> = ({ pool, account, user
   const { earningTokenPrice } = pool
 
   const {
-    userData: { cakeAtLastUserAction, userShares, lastUserActionTime },
+    userData: { dishAtLastUserAction, userShares, lastUserActionTime },
     pricePerFullShare,
   } = useCakeVault()
   const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
     account,
-    cakeAtLastUserAction,
+    dishAtLastUserAction,
     userShares,
     pricePerFullShare,
     earningTokenPrice,

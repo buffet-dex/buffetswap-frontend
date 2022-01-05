@@ -1,6 +1,9 @@
+import { ChainId } from '@buffet-dex/sdk'
 import farms from 'config/constants/farms'
 import { SerializedFarm } from 'state/types'
 import { getLpContract } from 'utils/contractHelpers'
+
+const { TESTNET } = ChainId
 
 // Test only against the last 10 farms, for performance concern
 const farmsToTest: [number, SerializedFarm][] = farms
@@ -15,14 +18,14 @@ describe('Config farms', () => {
   })
 
   it.each(farmsToTest)('Farm #%d has an unique address', (pid, farm) => {
-    const duplicates = farms.filter((f) => farm.lpAddresses[56] === f.lpAddresses[56])
+    const duplicates = farms.filter((f) => farm.lpAddresses[TESTNET] === f.lpAddresses[TESTNET])
     expect(duplicates).toHaveLength(1)
   })
 
   it.each(farmsToTest)('Farm %d has the correct token addresses', async (pid, farm) => {
     const tokenAddress = farm.token.address
     const quoteTokenAddress = farm.quoteToken.address
-    const lpContract = getLpContract(farm.lpAddresses[56])
+    const lpContract = getLpContract(farm.lpAddresses[TESTNET])
 
     const token0Address = (await lpContract.token0()).toLowerCase()
     const token1Address = (await lpContract.token1()).toLowerCase()
@@ -40,9 +43,11 @@ describe('Config farms', () => {
   const FACTORY_ADDRESS = '0xca143ce32fe78f1f7019d7d551a6402fc5350c73'
   const newFarmsToTest = farmsToTest.filter((farmSet) => farmSet[0] >= START_PID)
 
-  it.each(newFarmsToTest)('farm %d is using correct factory address', async (pid, farm) => {
-    const lpContract = getLpContract(farm.lpAddresses[56])
-    const factory = await lpContract.factory()
-    expect(factory.toLowerCase()).toEqual(FACTORY_ADDRESS)
-  })
+  if (newFarmsToTest.length > 0) {
+    it.each(newFarmsToTest)('farm %d is using correct factory address', async (pid, farm) => {
+      const lpContract = getLpContract(farm.lpAddresses[TESTNET])
+      const factory = await lpContract.factory()
+      expect(factory.toLowerCase()).toEqual(FACTORY_ADDRESS)
+    })
+  }
 })

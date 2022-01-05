@@ -1,5 +1,5 @@
 import React from 'react'
-import { ChainId, Currency, currencyEquals, ETHER, Token } from '@pancakeswap/sdk'
+import { ChainId, Currency, currencyEquals, ETHER, Token } from '@buffet-dex/sdk'
 import { Text } from '@buffet-dex/uikit'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'

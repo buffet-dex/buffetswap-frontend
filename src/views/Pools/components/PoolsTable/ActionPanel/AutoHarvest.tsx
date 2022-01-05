@@ -19,13 +19,13 @@ const AutoHarvestAction: React.FunctionComponent<AutoHarvestActionProps> = ({ us
   const { account } = useWeb3React()
 
   const {
-    userData: { cakeAtLastUserAction, userShares },
+    userData: { dishAtLastUserAction, userShares },
     pricePerFullShare,
     fees: { performanceFee },
   } = useCakeVault()
   const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
     account,
-    cakeAtLastUserAction,
+    dishAtLastUserAction,
     userShares,
     pricePerFullShare,
     earningTokenPrice,

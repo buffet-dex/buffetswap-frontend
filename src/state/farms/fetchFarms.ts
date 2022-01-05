@@ -9,6 +9,7 @@ const fetchFarms = async (farmsToFetch: SerializedFarmConfig[]) => {
       return serializedFarm
     }),
   )
+
   return data
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal, ModalBody, Text, Image, Button, Link, OpenNewIcon } from '@buffet-dex/uikit'
-import { Token } from '@pancakeswap/sdk'
+import { Token } from '@buffet-dex/sdk'
 import { useTranslation } from 'contexts/Localization'
 
 interface Props {

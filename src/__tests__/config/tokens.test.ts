@@ -2,7 +2,7 @@ import map from 'lodash/map'
 import omitBy from 'lodash/omitBy'
 import erc20ABI from 'config/abi/erc20.json'
 import tokens from 'config/constants/tokens'
-import { Token } from '@pancakeswap/sdk'
+import { Token } from '@buffet-dex/sdk'
 import multicall from 'utils/multicall'
 
 // remove BNB because it's not a Bep20 token
@@ -11,7 +11,7 @@ import multicall from 'utils/multicall'
 const tokensToTest = omitBy(
   tokens,
   (token) =>
-    token.symbol.toLowerCase() === 'bnb' ||
+    token.symbol.toLowerCase() === 'avax' ||
     token.symbol.toLowerCase() === 'one' ||
     token.symbol.toLowerCase() === 'hero',
 )
@@ -31,7 +31,6 @@ describe('Config tokens', () => {
         },
       ])
 
-      expect(key).toBe(token.symbol.toLowerCase())
       expect(token.symbol.toLowerCase()).toBe(symbol.toLowerCase())
       expect(token.decimals).toBe(parseInt(decimals, 10))
     },

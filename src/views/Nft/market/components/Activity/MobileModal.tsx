@@ -1,6 +1,6 @@
 import React from 'react'
 import { InjectedModalProps, Modal, Flex, Text, Button, Image, Link, BinanceIcon } from '@buffet-dex/uikit'
-import { Price } from '@pancakeswap/sdk'
+import { Price } from '@buffet-dex/sdk'
 import useTheme from 'hooks/useTheme'
 import styled from 'styled-components'
 import { Activity, NftToken } from 'state/nftMarket/types'

@@ -39,8 +39,8 @@ export const fetchPoolsBlockLimits = async () => {
 }
 
 export const fetchPoolsTotalStaking = async () => {
-  const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
-  const bnbPool = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
+  const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'AVAX')
+  const bnbPool = poolsConfig.filter((p) => p.stakingToken.symbol === 'AVAX')
 
   const callsNonBnbPools = nonBnbPools.map((poolConfig) => {
     return {

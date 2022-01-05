@@ -1,4 +1,4 @@
-import { ChainId } from '@pancakeswap/sdk'
+import { ChainId } from '@buffet-dex/sdk'
 import { createStore, Store } from 'redux'
 import { addTransaction, checkedTransaction, clearAllTransactions, finalizeTransaction } from './actions'
 import reducer, { initialState, TransactionState } from './reducer'
@@ -179,12 +179,12 @@ describe('transaction reducer', () => {
         }),
       )
       expect(Object.keys(store.getState())).toHaveLength(2)
-      expect(Object.keys(store.getState())).toEqual([String(ChainId.MAINNET), String(ChainId.TESTNET)])
+      expect(Object.keys(store.getState())).toEqual([String(ChainId.TESTNET), String(ChainId.MAINNET)])
       expect(Object.keys(store.getState()[ChainId.MAINNET] ?? {})).toEqual(['0x0'])
       expect(Object.keys(store.getState()[ChainId.TESTNET] ?? {})).toEqual(['0x1'])
       store.dispatch(clearAllTransactions({ chainId: ChainId.MAINNET }))
       expect(Object.keys(store.getState())).toHaveLength(2)
-      expect(Object.keys(store.getState())).toEqual([String(ChainId.MAINNET), String(ChainId.TESTNET)])
+      expect(Object.keys(store.getState())).toEqual([String(ChainId.TESTNET), String(ChainId.MAINNET)])
       expect(Object.keys(store.getState()[ChainId.MAINNET] ?? {})).toEqual([])
       expect(Object.keys(store.getState()[ChainId.TESTNET] ?? {})).toEqual(['0x1'])
     })
