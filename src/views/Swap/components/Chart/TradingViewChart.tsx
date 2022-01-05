@@ -1,4 +1,4 @@
-import { Currency } from '@pancakeswap/sdk'
+import { Currency } from '@buffet-dex/sdk'
 import { Box, BunnyPlaceholderIcon, Flex, Text } from '@buffet-dex/uikit'
 import TradingView, { useTradingViewEvent } from 'components/TradingView'
 import { useTranslation } from 'contexts/Localization'

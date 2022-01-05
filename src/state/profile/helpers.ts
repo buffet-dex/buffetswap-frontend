@@ -48,7 +48,7 @@ export const getUsername = async (address: string): Promise<string> => {
  */
 export const getProfileAvatar = async (address: string) => {
   try {
-    const hasRegistered = await profileContract.hasRegistered(address)
+    const hasRegistered = false // await profileContract.hasRegistered(address)
 
     if (!hasRegistered) {
       return null
@@ -85,7 +85,7 @@ export const getProfileAvatar = async (address: string) => {
 
 export const getProfile = async (address: string): Promise<GetProfileResponse> => {
   try {
-    const hasRegistered = await profileContract.hasRegistered(address)
+    const hasRegistered = false // await profileContract.hasRegistered(address)
 
     if (!hasRegistered) {
       return { hasRegistered, profile: null }

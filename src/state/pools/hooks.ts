@@ -78,7 +78,7 @@ export const useCakeVault = () => {
     userData: {
       isLoading,
       userShares: userSharesAsString,
-      cakeAtLastUserAction: cakeAtLastUserActionAsString,
+      dishAtLastUserAction: dishAtLastUserActionAsString,
       lastDepositedTime,
       lastUserActionTime,
     },
@@ -108,9 +108,9 @@ export const useCakeVault = () => {
     return new BigNumber(userSharesAsString)
   }, [userSharesAsString])
 
-  const cakeAtLastUserAction = useMemo(() => {
-    return new BigNumber(cakeAtLastUserActionAsString)
-  }, [cakeAtLastUserActionAsString])
+  const dishAtLastUserAction = useMemo(() => {
+    return new BigNumber(dishAtLastUserActionAsString)
+  }, [dishAtLastUserActionAsString])
 
   return {
     totalShares,
@@ -127,7 +127,7 @@ export const useCakeVault = () => {
     userData: {
       isLoading,
       userShares,
-      cakeAtLastUserAction,
+      dishAtLastUserAction,
       lastDepositedTime,
       lastUserActionTime,
     },

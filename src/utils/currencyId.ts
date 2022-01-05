@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@pancakeswap/sdk'
+import { Currency, ETHER, Token } from '@buffet-dex/sdk'
 
 export function currencyId(currency: Currency): string {
   if (currency === ETHER) return 'BNB'

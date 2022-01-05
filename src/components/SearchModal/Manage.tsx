@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Token } from '@pancakeswap/sdk'
+import { Token } from '@buffet-dex/sdk'
 import { ButtonMenu, ButtonMenuItem, ModalBody } from '@buffet-dex/uikit'
 import styled from 'styled-components'
 import { TokenList } from '@uniswap/token-lists'

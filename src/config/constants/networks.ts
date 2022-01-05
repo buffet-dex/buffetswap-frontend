@@ -1,8 +1,8 @@
-import { ChainId } from '@pancakeswap/sdk'
+import { ChainId } from '@buffet-dex/sdk'
 
 const NETWORK_URLS: { [chainId in ChainId]: string } = {
-  [ChainId.MAINNET]: 'https://bsc-dataseed1.defibit.io',
-  [ChainId.TESTNET]: 'https://data-seed-prebsc-1-s1.binance.org:8545',
+  [ChainId.MAINNET]: 'https://api.avax.network/ext/bc/C/rpc',
+  [ChainId.TESTNET]: 'https://api.avax-test.network/ext/bc/C/rpc',
 }
 
 export default NETWORK_URLS

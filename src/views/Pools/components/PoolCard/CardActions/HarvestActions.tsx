@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex, Text, Button, Heading, useModal, Skeleton } from '@buffet-dex/uikit'
 import BigNumber from 'bignumber.js'
-import { Token } from '@pancakeswap/sdk'
+import { Token } from '@buffet-dex/sdk'
 import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance, getBalanceNumber, formatNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
