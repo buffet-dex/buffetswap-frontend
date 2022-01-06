@@ -57,9 +57,12 @@ const ToggleWrapper = styled.div`
   }
 `
 
-const LabelWrapper = styled.div`
+const LabelWrapper = styled(Flex)`
+  align-items: center;
   > ${Text} {
-    font-size: 12px;
+    width: 100%;
+    margin-right: 10px;
+    font-size: 14px;
   }
 `
 
@@ -369,7 +372,7 @@ const Farms: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
+      <PageHeader background="#FAF5F2">
         <Heading as="h1" scale="xxl" color="secondary" mb="24px">
           {t('Farms')}
         </Heading>
@@ -402,7 +405,7 @@ const Farms: React.FC = () => {
           </ViewControls>
           <FilterContainer>
             <LabelWrapper>
-              <Text textTransform="uppercase">{t('Sort by')}</Text>
+              <Text>{t('Sort by')}</Text>
               <Select
                 options={[
                   {
@@ -430,7 +433,6 @@ const Farms: React.FC = () => {
               />
             </LabelWrapper>
             <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text textTransform="uppercase">{t('Search')}</Text>
               <SearchInput onChange={handleChangeQuery} placeholder="Search Farms" />
             </LabelWrapper>
           </FilterContainer>

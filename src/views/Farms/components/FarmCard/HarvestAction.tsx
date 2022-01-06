@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { Button, Flex, Heading } from '@buffet-dex/uikit'
 import { useTranslation } from 'contexts/Localization'
@@ -17,6 +18,16 @@ interface FarmCardActionsProps {
   pid?: number
 }
 
+export const HarvestButton = styled(Button)`
+  background: rgba(239, 88, 35, 0.1);
+  font-size: 16px;
+  &:disabled,
+  &.pancake-button--disabled {
+    background: rgba(239, 88, 35, 0.1);
+    opacity: 0.5;
+  }
+`
+
 const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   const { account } = useWeb3React()
   const { toastSuccess, toastError } = useToast()
@@ -30,15 +41,18 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   const earningsBusd = rawEarningsBalance ? rawEarningsBalance.multipliedBy(cakePrice).toNumber() : 0
 
   return (
-    <Flex mb="8px" justifyContent="space-between" alignItems="center">
+    <Flex mb="32px" justifyContent="space-between" alignItems="center">
       <Flex flexDirection="column" alignItems="flex-start">
-        <Heading color={rawEarningsBalance.eq(0) ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
+        <Heading scale="lg" color={rawEarningsBalance.eq(0) ? 'textDisabled' : 'textSubtle'}>
+          {displayBalance}
+        </Heading>
         {earningsBusd > 0 && (
           <Balance fontSize="12px" color="textSubtle" decimals={2} value={earningsBusd} unit=" USD" prefix="~" />
         )}
       </Flex>
-      <Button
+      <HarvestButton
         disabled={rawEarningsBalance.eq(0) || pendingTx}
+        variant="text"
         onClick={async () => {
           setPendingTx(true)
           try {
@@ -60,7 +74,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
         }}
       >
         {pendingTx ? t('Harvesting') : t('Harvest')}
-      </Button>
+      </HarvestButton>
     </Flex>
   )
 }

@@ -2,13 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Label = styled.div`
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 400;
   color: ${({ theme }) => theme.colors.textSubtle};
   text-align: left;
 `
 
 const ContentContainer = styled.div`
-  min-height: 24px;
+  height: auto;
   display: flex;
   align-items: center;
 `
