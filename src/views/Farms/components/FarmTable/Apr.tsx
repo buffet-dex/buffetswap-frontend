@@ -4,7 +4,7 @@ import ApyButton from 'views/Farms/components/FarmCard/ApyButton'
 import BigNumber from 'bignumber.js'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { Skeleton } from '@buffet-dex/uikit'
+import { Skeleton, Text } from '@buffet-dex/uikit'
 
 export interface AprProps {
   value: string
@@ -27,12 +27,6 @@ const Container = styled.div`
   button {
     width: 20px;
     height: 20px;
-
-    svg {
-      path {
-        fill: ${({ theme }) => theme.colors.textSubtle};
-      }
-    }
   }
 `
 
@@ -58,23 +52,25 @@ const Apr: React.FC<AprProps> = ({
 
   return originalValue !== 0 ? (
     <Container>
-      {originalValue ? (
-        <ApyButton
-          variant={hideButton ? 'text' : 'text-and-button'}
-          pid={pid}
-          lpSymbol={lpSymbol}
-          lpLabel={lpLabel}
-          multiplier={multiplier}
-          cakePrice={cakePrice}
-          apr={originalValue}
-          displayApr={value}
-          addLiquidityUrl={addLiquidityUrl}
-        />
-      ) : (
-        <AprWrapper>
-          <Skeleton width={60} />
-        </AprWrapper>
-      )}
+      <Text fontWeight="700" fontSize="16px">
+        {originalValue ? (
+          <ApyButton
+            variant={hideButton ? 'text' : 'text-and-button'}
+            pid={pid}
+            lpSymbol={lpSymbol}
+            lpLabel={lpLabel}
+            multiplier={multiplier}
+            cakePrice={cakePrice}
+            apr={originalValue}
+            displayApr={value}
+            addLiquidityUrl={addLiquidityUrl}
+          />
+        ) : (
+          <AprWrapper>
+            <Skeleton width={60} />
+          </AprWrapper>
+        )}
+      </Text>
     </Container>
   ) : (
     <Container>

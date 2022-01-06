@@ -29,7 +29,13 @@ const Container = styled.div`
 `
 
 const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) => {
-  const displayMultiplier = multiplier ? multiplier.toLowerCase() : <Skeleton width={30} />
+  const displayMultiplier = multiplier ? (
+    <Text fontWeight="700" fontSize="16px">
+      {multiplier.toLowerCase()}
+    </Text>
+  ) : (
+    <Skeleton width={30} />
+  )
   const { t } = useTranslation()
   const tooltipContent = (
     <>

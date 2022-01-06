@@ -44,6 +44,9 @@ const DropDownContainer = styled(Box)<{ isOpen: boolean }>`
   min-width: 136px;
   user-select: none;
   z-index: 20;
+  & :first-child {
+    border: none;
+  }
   > ${DropDownHeader} {
     height: 56px;
   }

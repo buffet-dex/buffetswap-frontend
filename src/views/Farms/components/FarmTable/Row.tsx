@@ -114,7 +114,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout label={t('APR')}>
+                      <CellLayout>
                         <Apr {...props.apr} hideButton={isSmallerScreen} />
                       </CellLayout>
                     </CellInner>
@@ -124,9 +124,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout label={t(tableSchema[columnIndex].label)}>
-                        {React.createElement(cells[key], { ...props[key], userDataReady })}
-                      </CellLayout>
+                      <CellLayout>{React.createElement(cells[key], { ...props[key], userDataReady })}</CellLayout>
                     </CellInner>
                   </td>
                 )
