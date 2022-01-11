@@ -43,16 +43,16 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
   return (
     <ActionContainer>
       <ActionTitles>
-        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
+        <Text fontWeight="700" color="secondary" fontSize="16px" pr="4px">
           CAKE
         </Text>
-        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+        <Text fontWeight="700" color="textSubtle" fontSize="16px">
           {t('Earned')}
         </Text>
       </ActionTitles>
       <ActionContent>
         <div>
-          <Heading>{displayBalance}</Heading>
+          <Heading fontSize="14px">{displayBalance}</Heading>
           {earningsBusd > 0 && (
             <Balance fontSize="12px" color="textSubtle" decimals={2} value={earningsBusd} unit=" USD" prefix="~" />
           )}
@@ -79,6 +79,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
             dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
           }}
           ml="4px"
+          variant="grey"
         >
           {pendingTx ? t('Harvesting') : t('Harvest')}
         </Button>

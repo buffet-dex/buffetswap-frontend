@@ -1,9 +1,11 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { useTable, Button, ChevronUpIcon, ColumnType } from '@buffet-dex/uikit'
+import { useTable, Button, ChevronUpIcon, ColumnType, useMatchBreakpoints } from '@buffet-dex/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 import Row, { RowProps } from './Row'
+import CellLayout from './CellLayout'
+import { DesktopColumnSchema, MobileColumnSchema } from '../types'
 
 export interface ITableProps {
   data: RowProps[]
@@ -57,6 +59,21 @@ const ScrollButtonContainer = styled.div`
   padding-top: 5px;
   padding-bottom: 5px;
 `
+const StyledTr = styled.tr`
+  cursor: pointer;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
+`
+const CellInner = styled.div`
+  padding: 24px 0px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding-right: 8px;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    padding-right: 32px;
+  }
+`
 
 const FarmTable: React.FC<ITableProps> = (props) => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
@@ -70,6 +87,9 @@ const FarmTable: React.FC<ITableProps> = (props) => {
       behavior: 'smooth',
     })
   }
+  const { isDesktop, isMobile } = useMatchBreakpoints()
+  const isSmallerScreen = !isDesktop
+  const tableSchema = isSmallerScreen ? MobileColumnSchema : DesktopColumnSchema
 
   return (
     <Container id="farms-table">
@@ -77,6 +97,19 @@ const FarmTable: React.FC<ITableProps> = (props) => {
         <TableWrapper ref={tableWrapperEl}>
           <StyledTable>
             <TableBody>
+              {!isMobile && (
+                <StyledTr>
+                  {tableSchema.map((column) => {
+                    return (
+                      <td>
+                        <CellInner>
+                          <CellLayout label={t(column.label)} />
+                        </CellInner>
+                      </td>
+                    )
+                  })}
+                </StyledTr>
+              )}
               {rows.map((row) => {
                 return <Row {...row.original} userDataReady={userDataReady} key={`table-row-${row.id}`} />
               })}

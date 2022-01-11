@@ -20,6 +20,11 @@ const AnnualRoiDisplay = styled(Text)`
   text-align: right;
   text-overflow: ellipsis;
 `
+const CancelButton = styled(Button)`
+  &::before {
+    padding: 1px;
+  }
+`
 
 interface DepositModalProps {
   max: BigNumber
@@ -121,7 +126,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
         inputTitle={t('Stake')}
       />
       <Flex mt="24px" alignItems="center" justifyContent="space-between">
-        <Text mr="8px" color="textSubtle">
+        <Text mt="49px" mr="8px" color="textSubtleOpacity">
           {t('Annual ROI at current rates')}:
         </Text>
         {Number.isFinite(annualRoi) ? (
@@ -141,9 +146,9 @@ const DepositModal: React.FC<DepositModalProps> = ({
         )}
       </Flex>
       <ModalActions>
-        <Button variant="secondary" onClick={onDismiss} width="100%" disabled={pendingTx}>
+        <CancelButton variant="secondary" onClick={onDismiss} width="100%" disabled={pendingTx}>
           {t('Cancel')}
-        </Button>
+        </CancelButton>
         <Button
           width="100%"
           disabled={
