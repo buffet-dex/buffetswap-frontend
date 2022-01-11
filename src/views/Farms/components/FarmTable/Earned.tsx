@@ -12,7 +12,7 @@ interface EarnedPropsWithLoading extends EarnedProps {
 }
 
 const Amount = styled.span<{ earned: number }>`
-  color: ${({ earned, theme }) => (earned ? theme.colors.textSubtle : theme.colors.textDisabled)};
+  color: ${({ theme }) => theme.colors.textSubtle};
   display: flex;
   align-items: center;
 `

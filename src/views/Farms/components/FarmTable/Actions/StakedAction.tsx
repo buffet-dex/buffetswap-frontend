@@ -126,7 +126,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+          <Text pb="10px" color="textSubtle" fontSize="14px">
             {t('Start Farming')}
           </Text>
         </ActionTitles>
@@ -194,7 +194,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           <Button
             width="100%"
             onClick={onPresentDeposit}
-            variant="secondary"
+            variant="primary"
             disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
           >
             {t('Stake LP')}
@@ -220,14 +220,14 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   }
 
   return (
-    <ActionContainer>
+    <ActionContainer maxWidth="307px">
       <ActionTitles>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {t('Enable Farm')}
         </Text>
       </ActionTitles>
       <ActionContent>
-        <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="secondary">
+        <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="primary" scale="sm">
           {t('Enable')}
         </Button>
       </ActionContent>

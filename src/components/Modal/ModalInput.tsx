@@ -32,7 +32,7 @@ const StyledTokenInput = styled.div<InputProps>`
   border-radius: 16px;
   box-shadow: ${getBoxShadow};
   color: ${({ theme }) => theme.colors.text};
-  padding: 8px 16px 8px 0;
+  padding: 16px 22px 9px 22px;
   width: 100%;
 `
 
@@ -42,6 +42,9 @@ const StyledInput = styled(Input)`
   margin: 0 8px;
   padding: 0 8px;
   border: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: #202020;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     width: 80px;
@@ -85,11 +88,15 @@ const ModalInput: React.FC<ModalInputProps> = ({
   return (
     <div style={{ position: 'relative' }}>
       <StyledTokenInput isWarning={isBalanceZero}>
-        <Flex justifyContent="space-between" pl="16px">
-          <Text fontSize="14px">{inputTitle}</Text>
-          <Text fontSize="14px">{t('Balance: %balance%', { balance: displayBalance(max) })}</Text>
+        <Flex justifyContent="space-between" pl="16px" pb="17px">
+          <Text fontSize="16px" bold>
+            {inputTitle}
+          </Text>
+          <Text fontSize="16px" bold>
+            {t('Balance: %balance%', { balance: displayBalance(max) })}
+          </Text>
         </Flex>
-        <Flex alignItems="flex-end" justifyContent="space-around">
+        <Flex alignItems="flex-end" justifyContent="space-between">
           <StyledInput
             pattern={`^[0-9]*[.,]?[0-9]{0,${decimals}}$`}
             inputMode="decimal"
@@ -99,10 +106,14 @@ const ModalInput: React.FC<ModalInputProps> = ({
             placeholder="0"
             value={value}
           />
-          <Button scale="sm" onClick={onSelectMax} mr="8px">
-            {t('Max')}
-          </Button>
-          <Text fontSize="16px">{symbol}</Text>
+          <Flex alignItems="center">
+            <Button variant="grey" scale="sm" onClick={onSelectMax} mr="8px">
+              {t('Max')}
+            </Button>
+            <Text fontSize="16px" bold>
+              {symbol}
+            </Text>
+          </Flex>
         </Flex>
       </StyledTokenInput>
       {isBalanceZero && (

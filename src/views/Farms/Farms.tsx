@@ -71,6 +71,7 @@ const FilterContainer = styled.div`
   align-items: center;
   width: 100%;
   padding: 8px 0px;
+  margin-top: 10px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     width: auto;
@@ -92,6 +93,14 @@ const ViewControls = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     justify-content: flex-start;
     width: auto;
+
+    > div {
+      padding: 0;
+    }
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    justify-content: space-between;
+    width: 50%;
 
     > div {
       padding: 0;
