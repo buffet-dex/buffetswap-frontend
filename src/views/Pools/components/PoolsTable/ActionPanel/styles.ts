@@ -1,7 +1,7 @@
 import { Flex } from '@buffet-dex/uikit'
 import styled from 'styled-components'
 
-export const ActionContainer = styled(Flex)<{ isAutoVault?: boolean; flexDirection?: 'string' }>`
+export const ActionContainer = styled(Flex)<{ isAutoVault?: boolean }>`
   padding: 16px;
   border: 2px solid ${({ theme }) => theme.colors.input};
   border-radius: 16px;
@@ -9,10 +9,8 @@ export const ActionContainer = styled(Flex)<{ isAutoVault?: boolean; flexDirecti
   flex-grow: 1;
   flex-basis: min-content;
   margin-bottom: 16px;
-  background: #FFFFFF;
+  background: #ffffff;
   min-height: 115px;
-  display:flex;
-  flex-direction:${({ flexDirection }) => flexDirection || 'column'} ;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 12px;
@@ -20,7 +18,6 @@ export const ActionContainer = styled(Flex)<{ isAutoVault?: boolean; flexDirecti
     margin-bottom: 0;
     height: ${({ isAutoVault }) => (isAutoVault ? '115px' : 'auto')};
   }
-}
 
   ${({ theme }) => theme.mediaQueries.xl} {
     margin-left: 32px;
