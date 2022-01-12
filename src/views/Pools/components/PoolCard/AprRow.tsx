@@ -61,7 +61,13 @@ const AprRow: React.FC<AprRowProps> = ({ pool, stakedBalance, performanceFee = 0
       <TooltipText ref={targetRef}>{isAutoVault ? `${t('APY')}:` : `${t('APR')}:`}</TooltipText>
       {earningsPercentageToDisplay || isFinished ? (
         <ApyLabelContainer alignItems="center" onClick={onPresentApyModal}>
+          {!isFinished && (
+            <IconButton variant="text" scale="sm">
+              <CalculateIcon color="textSubtle" width="18px" />
+            </IconButton>
+          )}
           <Balance
+            color="#202020"
             fontSize="16px"
             isDisabled={isFinished}
             value={isFinished ? 0 : earningsPercentageToDisplay}
@@ -69,11 +75,6 @@ const AprRow: React.FC<AprRowProps> = ({ pool, stakedBalance, performanceFee = 0
             unit="%"
             onClick={onPresentApyModal}
           />
-          {!isFinished && (
-            <IconButton variant="text" scale="sm">
-              <CalculateIcon color="textSubtle" width="18px" />
-            </IconButton>
-          )}
         </ApyLabelContainer>
       ) : (
         <Skeleton width="82px" height="32px" />

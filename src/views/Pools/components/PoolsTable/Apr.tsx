@@ -59,6 +59,7 @@ const Apr: React.FC<AprProps> = ({ pool, showIcon, stakedBalance, performanceFee
           <Balance
             onClick={openRoiModal}
             fontSize="16px"
+            fontWeight="700"
             isDisabled={isFinished}
             value={isFinished ? 0 : earningsPercentageToDisplay}
             decimals={2}

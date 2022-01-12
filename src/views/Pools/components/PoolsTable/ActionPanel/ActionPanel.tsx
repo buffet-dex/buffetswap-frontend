@@ -63,7 +63,7 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
   background: ${({ theme }) => theme.colors.dropdown};
   display: flex;
   flex-direction: column-reverse;
-  justify-content: center;
+  justify-content: space=between;
   padding: 12px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
@@ -73,16 +73,27 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
 `
 
 const ActionContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  display: grid;
 
+  justify-content: space-between;
+  grid-template-columns: 1fr;
   ${({ theme }) => theme.mediaQueries.sm} {
-    flex-direction: row;
+    grid-template-columns: 2fr 1fr;
     align-items: center;
-    flex-grow: 1;
-    flex-basis: 0;
   }
 `
+// const ActionContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+
+//   ${({ theme }) => theme.mediaQueries.sm} {
+//     flex-direction: column;
+//     align-items: center;
+//     flex-grow: 1;
+//     flex-basis: 0;
+//   }
+// `
 
 type MediaBreakpoints = {
   isXs: boolean

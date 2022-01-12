@@ -21,13 +21,18 @@ interface PoolRowProps {
 
 const StyledRow = styled.div`
   background-color: transparent;
-  display: flex;
+  display: grid;
   cursor: pointer;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr) 50px;
+  padding: 0 12px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    grid-template-columns: repeat(5, 1fr) 50px;
+  }
 `
 
 const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
   const { isXs, isSm, isMd, isLg, isXl, isXxl, isTablet, isDesktop } = useMatchBreakpoints()
-  const isLargerScreen = isLg || isXl || isXxl
   const [expanded, setExpanded] = useState(false)
   const shouldRenderActionPanel = useDelayedUnmount(expanded, 300)
 
@@ -44,8 +49,9 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
         ) : (
           <EarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
         )}
+        {isDesktop && <TotalStakedCell pool={pool} />}
         {pool.isAutoVault ? <AutoAprCell pool={pool} /> : <AprCell pool={pool} />}
-        {isLargerScreen && <TotalStakedCell pool={pool} />}
+
         {isDesktop && <EndsInCell pool={pool} />}
         <ExpandActionCell expanded={expanded} isFullLayout={isTablet || isDesktop} />
       </StyledRow>

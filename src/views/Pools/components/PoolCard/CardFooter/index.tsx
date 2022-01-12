@@ -39,7 +39,11 @@ const Footer: React.FC<FooterProps> = ({ pool, account }) => {
     <CardFooter>
       <ExpandableButtonWrapper>
         <Flex alignItems="center">
-          {isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
+          {isAutoVault ? (
+            <CompoundingPoolTag />
+          ) : (
+            <ManualPoolTag border="1px" variant="textSubtle" background="white" />
+          )}
           {tooltipVisible && tooltip}
           <Flex ref={targetRef}>
             <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />

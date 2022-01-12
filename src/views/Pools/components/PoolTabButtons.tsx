@@ -35,6 +35,14 @@ const ViewControls = styled.div`
       padding: 0;
     }
   }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    justify-content: space-between;
+    width: 50%;
+
+    > div {
+      padding: 0;
+    }
+  }
 `
 
 const Wrapper = styled.div`
@@ -60,8 +68,8 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
 
   const liveOrFinishedSwitch = (
     <Wrapper>
-      <ButtonMenu activeIndex={isExact ? 0 : 1} scale="sm" variant="subtle">
-        <ButtonMenuItem as={Link} to={`${url}`}>
+      <ButtonMenu activeIndex={isExact ? 0 : 1} scale="sm" variant="subtlePrimary">
+        <ButtonMenuItem width={83} as={Link} to={`${url}`}>
           {t('Live')}
         </ButtonMenuItem>
         <NotificationDot show={hasStakeInFinishedPools}>

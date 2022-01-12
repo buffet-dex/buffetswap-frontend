@@ -63,6 +63,7 @@ const FilterContainer = styled.div`
   align-items: center;
   width: 100%;
   padding: 8px 0px;
+  margin-top: 10px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     width: auto;
@@ -70,9 +71,12 @@ const FilterContainer = styled.div`
   }
 `
 
-const LabelWrapper = styled.div`
+const LabelWrapper = styled(Flex)`
+  align-items: center;
   > ${Text} {
-    font-size: 12px;
+    width: 100%;
+    margin-right: 10px;
+    font-size: 14px;
   }
 `
 
@@ -255,7 +259,7 @@ const Pools: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
+      <PageHeader background="#FAF5F2">
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" scale="xxl" color="secondary" mb="24px">
@@ -285,9 +289,7 @@ const Pools: React.FC = () => {
           />
           <FilterContainer>
             <LabelWrapper>
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-                {t('Sort by')}
-              </Text>
+              <Text>{t('Sort by')}</Text>
               <ControlStretch>
                 <Select
                   options={[
@@ -313,9 +315,6 @@ const Pools: React.FC = () => {
               </ControlStretch>
             </LabelWrapper>
             <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-                {t('Search')}
-              </Text>
               <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
             </LabelWrapper>
           </FilterContainer>

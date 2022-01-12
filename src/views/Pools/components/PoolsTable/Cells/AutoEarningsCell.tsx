@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Skeleton, Text, useTooltip, HelpIcon, Flex, Box, useMatchBreakpoints } from '@buffet-dex/uikit'
+import { Skeleton, Text, useTooltip, HelpIcon, Flex, useMatchBreakpoints } from '@buffet-dex/uikit'
 import { DeserializedPool } from 'state/types'
 import Balance from 'components/Balance'
 import { useCakeVault } from 'state/pools/hooks'
@@ -42,7 +42,6 @@ const AutoEarningsCell: React.FC<AutoEarningsCellProps> = ({ pool, account, user
     earningTokenPrice,
   )
 
-  const labelText = t('Recent CAKE profit')
   const earningTokenBalance = autoCakeToDisplay
   const hasEarnings = hasAutoEarnings
   const earningTokenDollarBalance = autoUsdToDisplay
@@ -64,16 +63,13 @@ const AutoEarningsCell: React.FC<AutoEarningsCellProps> = ({ pool, account, user
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color="textSubtle" textAlign="left">
-          {labelText}
-        </Text>
         {!userDataLoaded && account ? (
           <Skeleton width="80px" height="16px" />
         ) : (
           <>
             {tooltipVisible && tooltip}
             <Flex>
-              <Box mr="8px" height="32px">
+              <Flex flexDirection={['column', null, 'row']} alignItems="center" mr="8px">
                 <Balance
                   mt="4px"
                   bold={!isMobile}
@@ -97,11 +93,11 @@ const AutoEarningsCell: React.FC<AutoEarningsCellProps> = ({ pool, account, user
                     )}
                   </>
                 ) : (
-                  <Text mt="4px" fontSize="12px" color="textDisabled">
-                    0 USD
+                  <Text ml="2px" mt="4px" fontSize="16px" fontWeight="700" color="textDisabled">
+                    (0 USD)
                   </Text>
                 )}
-              </Box>
+              </Flex>
               {hasEarnings && !isMobile && (
                 <HelpIconWrapper ref={targetRef}>
                   <HelpIcon color="textSubtle" />
