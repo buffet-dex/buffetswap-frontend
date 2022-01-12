@@ -43,11 +43,11 @@ const AnimatedArrow: React.FC<AnimatedArrowProps> = ({ calculatorState }) => {
   }, [calculatorState])
 
   return (
-    <ArrowContainer justifyContent="center" my="24px" key={key}>
+    <ArrowContainer justifyContent="center" margin="71px 0 32px" key={key}>
       {mode === CalculatorMode.ROI_BASED_ON_PRINCIPAL ? (
-        <ArrowDownIcon width="24px" height="24px" color="textSubtle" />
+        <ArrowDownIcon width="52px" height="52px" color="textSubtle" fill="textSubtle" />
       ) : (
-        <ArrowUpIcon width="24px" height="24px" color="textSubtle" />
+        <ArrowUpIcon width="52px" height="52px" color="textSubtle" fill="textSubtle" />
       )}
     </ArrowContainer>
   )
