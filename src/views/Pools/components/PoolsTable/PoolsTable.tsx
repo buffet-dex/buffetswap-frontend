@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { Button, ChevronUpIcon } from '@buffet-dex/uikit'
+import { Button, ChevronUpIcon, Text, useMatchBreakpoints } from '@buffet-dex/uikit'
+import { MobileColumnSchema, DesktopColumnSchema } from 'views/Pools/types'
 import { useTranslation } from 'contexts/Localization'
 import { DeserializedPool } from 'state/types'
 import PoolRow from './PoolRow'
@@ -27,12 +28,34 @@ const StyledTableBorder = styled.div`
   padding: 1px 1px 3px 1px;
   background-size: 400% 400%;
 `
-
 const ScrollButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 5px;
   padding-bottom: 5px;
+`
+const StyledRow = styled.div`
+  background-color: transparent;
+  display: grid;
+  cursor: pointer;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr) 50px;
+  padding: 0 12px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    grid-template-columns: repeat(5, 1fr) 50px;
+  }
+  gap: 8px;
+`
+const StyledCell = styled.div`
+  padding: 24px 0px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding-right: 8px;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    padding-right: 32px;
+  }
 `
 
 const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account }) => {
@@ -43,9 +66,23 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
       behavior: 'smooth',
     })
   }
+  const { isDesktop } = useMatchBreakpoints()
+  const isSmallerScreen = !isDesktop
+  const tableSchema = isSmallerScreen ? MobileColumnSchema : DesktopColumnSchema
+
   return (
     <StyledTableBorder>
       <StyledTable id="pools-table" role="table" ref={tableWrapperEl}>
+        <StyledRow role="row">
+          {tableSchema.map((headerItem) => (
+            <StyledCell key={headerItem.id} role="cell">
+              <Text fontSize="14px" color="textSubtle" textAlign="left">
+                {t(headerItem.label)}
+              </Text>
+            </StyledCell>
+          ))}
+        </StyledRow>
+
         {pools.map((pool) => (
           <PoolRow
             key={pool.isAutoVault ? 'auto-cake' : pool.sousId}

@@ -5,7 +5,6 @@ import {
   Button,
   Text,
   ErrorIcon,
-  ArrowUpIcon,
   MetamaskIcon,
   Flex,
   Box,
@@ -75,13 +74,12 @@ function TransactionSubmittedContent({
   return (
     <Wrapper>
       <Section>
-        <ConfirmedIcon>
-          <ArrowUpIcon strokeWidth={0.5} width="90px" color="primary" />
-        </ConfirmedIcon>
         <AutoColumn gap="12px" justify="center">
-          <Text fontSize="20px">{t('Transaction Submitted')}</Text>
+          <Text fontSize="30px" bold>
+            {t('Transaction Submitted')}
+          </Text>
           {chainId && hash && (
-            <Link external small href={getBscScanLink(hash, 'transaction', chainId)}>
+            <Link fontSize="16px" external small href={getBscScanLink(hash, 'transaction', chainId)}>
               {t('View on BscScan')}
             </Link>
           )}
@@ -98,7 +96,7 @@ function TransactionSubmittedContent({
               </RowFixed>
             </Button>
           )}
-          <Button onClick={onDismiss} mt="20px">
+          <Button width="177px" scale="lg" onClick={onDismiss} mt="20px">
             {t('Close')}
           </Button>
         </AutoColumn>

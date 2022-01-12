@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { DetailEyeIcon, useMatchBreakpoints } from '@buffet-dex/uikit'
-import { useTranslation } from 'contexts/Localization'
+import { DetailEyeIcon } from '@buffet-dex/uikit'
 
 interface DetailsProps {
   actionPanelToggled: boolean
@@ -30,9 +29,6 @@ const DetailIcon = styled(DetailEyeIcon)<{ toggled: boolean }>`
 `
 
 const Details: React.FC<DetailsProps> = ({ actionPanelToggled }) => {
-  const { t } = useTranslation()
-  const { isDesktop } = useMatchBreakpoints()
-
   return (
     <Container>
       <DetailIcon toggled={actionPanelToggled} />

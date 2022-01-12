@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, ChevronDownIcon } from '@buffet-dex/uikit'
-import { useTranslation } from 'contexts/Localization'
+import { DetailEyeIcon } from '@buffet-dex/uikit'
 import BaseCell from './BaseCell'
 
 interface ExpandActionCellProps {
@@ -18,26 +17,22 @@ const StyledCell = styled(BaseCell)`
   padding-left: 0px;
   ${({ theme }) => theme.mediaQueries.md} {
     flex: 0 0 120px;
-    padding-right: 32px;
     padding-left: 8px;
   }
 `
-
-const ArrowIcon = styled(ChevronDownIcon)<{ toggled: boolean }>`
-  transform: ${({ toggled }) => (toggled ? 'rotate(180deg)' : 'rotate(0)')};
-  height: 24px;
+const DetailIcon = styled(DetailEyeIcon)<{ toggled: boolean }>`
+  rect {
+    fill: ${({ toggled }) => (toggled ? '#FFFFFF' : '#202020')};
+  }
+  path {
+    fill: ${({ toggled }) => (toggled ? 'rgba(32, 32, 32, 0.5)' : 'primary')};
+  }
 `
 
-const TotalStakedCell: React.FC<ExpandActionCellProps> = ({ expanded, isFullLayout }) => {
-  const { t } = useTranslation()
+const TotalStakedCell: React.FC<ExpandActionCellProps> = ({ expanded }) => {
   return (
     <StyledCell role="cell">
-      {isFullLayout && (
-        <Text color="primary" bold>
-          {expanded ? t('Hide') : t('Details')}
-        </Text>
-      )}
-      <ArrowIcon color="primary" toggled={expanded} />
+      <DetailIcon toggled={expanded} />
     </StyledCell>
   )
 }

@@ -30,7 +30,7 @@ const EndsInCell: React.FC<FinishCellProps> = ({ pool }) => {
   const renderBlocks = shouldShowBlockCountdown ? (
     <Flex alignItems="center">
       <Flex flex="1.3">
-        <Balance fontSize="16px" value={blocksToDisplay} decimals={0} />
+        <Balance fontWeight="700" fontSize="16px" value={blocksToDisplay} decimals={0} />
         <Text ml="4px" textTransform="lowercase">
           {t('Blocks')}
         </Text>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Flex, TooltipText, useTooltip, Skeleton, Heading } from '@buffet-dex/uikit'
+import { Text, Flex, TooltipText, useTooltip, Skeleton, Heading, useMatchBreakpoints } from '@buffet-dex/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { getCakeVaultEarnings } from 'views/Pools/helpers'
 import { useTranslation } from 'contexts/Localization'
@@ -17,7 +17,7 @@ interface AutoHarvestActionProps extends DeserializedPool {
 const AutoHarvestAction: React.FunctionComponent<AutoHarvestActionProps> = ({ userDataLoaded, earningTokenPrice }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
-
+  const { isMobile } = useMatchBreakpoints()
   const {
     userData: { dishAtLastUserAction, userShares },
     pricePerFullShare,
@@ -41,7 +41,7 @@ const AutoHarvestAction: React.FunctionComponent<AutoHarvestActionProps> = ({ us
   )
 
   const actionTitle = (
-    <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
+    <Text fontSize="16px" fontWeight="700" color="secondary" as="span">
       {t('Recent CAKE profit')}
     </Text>
   )
@@ -69,10 +69,11 @@ const AutoHarvestAction: React.FunctionComponent<AutoHarvestActionProps> = ({ us
   }
 
   return (
-    <ActionContainer isAutoVault>
-      <ActionTitles>{actionTitle}</ActionTitles>
+    <ActionContainer flexDirection="column" isAutoVault>
+      {isMobile && <ActionTitles>{actionTitle}</ActionTitles>}
       <ActionContent>
-        <Flex flex="1" pt="16px" flexDirection="column" alignSelf="flex-start">
+        <Flex paddingTop={isMobile ? '16px' : ''} flex="1" flexDirection="column" alignSelf="flex-start">
+          {!isMobile && <ActionTitles>{actionTitle}</ActionTitles>}
           <>
             {hasEarnings ? (
               <>
@@ -91,7 +92,9 @@ const AutoHarvestAction: React.FunctionComponent<AutoHarvestActionProps> = ({ us
               </>
             ) : (
               <>
-                <Heading color="textDisabled">0</Heading>
+                <Text fontSize="20px" fontWeight="700" color="textDisabled">
+                  0
+                </Text>
                 <Text fontSize="12px" color="textDisabled">
                   0 USD
                 </Text>
@@ -99,15 +102,21 @@ const AutoHarvestAction: React.FunctionComponent<AutoHarvestActionProps> = ({ us
             )}
           </>
         </Flex>
-        <Flex flex="1.3" flexDirection="column" alignSelf="flex-start" alignItems="flex-start">
+        <Flex
+          paddingLeft={['15px', null, null, '30px']}
+          flex="1.3"
+          flexDirection="column"
+          alignSelf="flex-start"
+          alignItems="flex-start"
+        >
           <UnstakingFeeCountdownRow isTableVariant />
-          <Flex mb="2px" justifyContent="space-between" alignItems="center">
+          <Flex width="max-content" mb="2px" justifyContent="space-between" alignItems="center">
             {tooltipVisible && tooltip}
-            <TooltipText ref={targetRef} small>
+            <TooltipText fontSize="16px" fontWeight="700" ref={targetRef} color="textSubtleOpacity" small>
               {t('Performance Fee')}
             </TooltipText>
             <Flex alignItems="center">
-              <Text ml="4px" small>
+              <Text fontSize="16px" fontWeight="700" color="textSubtleOpacity" ml="4px" small>
                 {performanceFee / 100}%
               </Text>
             </Flex>

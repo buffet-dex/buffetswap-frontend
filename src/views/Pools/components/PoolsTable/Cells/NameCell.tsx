@@ -24,6 +24,10 @@ const StyledCell = styled(BaseCell)`
   }
 `
 
+const StyledCellContent = styled(CellContent)`
+  align-self: center;
+`
+
 const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
@@ -61,7 +65,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
       ) : (
         <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} mr="8px" width={40} height={40} />
       )}
-      <CellContent>
+      <StyledCellContent>
         {showStakedTag && (
           <Text fontSize="12px" bold color={isFinished ? 'failure' : 'secondary'} textTransform="uppercase">
             {t('Staked')}
@@ -75,7 +79,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
             {subtitle}
           </Text>
         )}
-      </CellContent>
+      </StyledCellContent>
     </StyledCell>
   )
 }

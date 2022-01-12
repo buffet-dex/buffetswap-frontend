@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Skeleton, Text, Flex, Box, useModal, useMatchBreakpoints } from '@buffet-dex/uikit'
+import { Skeleton, Text, Flex, useModal, useMatchBreakpoints } from '@buffet-dex/uikit'
 import { DeserializedPool } from 'state/types'
 import BigNumber from 'bignumber.js'
 import { PoolCategory } from 'config/constants/types'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { formatNumber, getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import Balance from 'components/Balance'
-import { useTranslation } from 'contexts/Localization'
 import BaseCell, { CellContent } from './BaseCell'
 import CollectModal from '../../PoolCard/Modals/CollectModal'
 
@@ -18,14 +17,13 @@ interface EarningsCellProps {
 }
 
 const StyledCell = styled(BaseCell)`
-  flex: 4.5;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    flex: 1 0 120px;
-  }
+  // flex: 4.5;
+  // ${({ theme }) => theme.mediaQueries.sm} {
+  //   flex: 1 0 120px;
+  // }
 `
 
 const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoaded }) => {
-  const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
   const { sousId, earningToken, poolCategory, userData, earningTokenPrice } = pool
   const isManualCakePool = sousId === 0
@@ -37,8 +35,6 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   const fullBalance = getFullDisplayBalance(earnings, earningToken.decimals)
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
   const isBnbPool = poolCategory === PoolCategory.BINANCE
-
-  const labelText = t('%asset% Earned', { asset: earningToken.symbol })
 
   const [onPresentCollect] = useModal(
     <CollectModal
@@ -60,15 +56,17 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color="textSubtle" textAlign="left">
-          {labelText}
-        </Text>
         {!userDataLoaded && account ? (
           <Skeleton width="80px" height="16px" />
         ) : (
           <>
             <Flex>
-              <Box mr="8px" height="32px" onClick={hasEarnings ? handleEarningsClick : undefined}>
+              <Flex
+                flexDirection={['column', null, 'row']}
+                alignItems="center"
+                mr="8px"
+                onClick={hasEarnings ? handleEarningsClick : undefined}
+              >
                 <Balance
                   mt="4px"
                   bold={!isMobile}
@@ -92,11 +90,11 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
                     )}
                   </>
                 ) : (
-                  <Text mt="4px" fontSize="12px" color="textDisabled">
-                    0 USD
+                  <Text ml="2px" mt="4px" fontSize="16px" fontWeight="700" color="textDisabled">
+                    (0 USD)
                   </Text>
                 )}
-              </Box>
+              </Flex>
             </Flex>
           </>
         )}

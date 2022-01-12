@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
-import { Flex, Skeleton, Text } from '@buffet-dex/uikit'
+import { Flex, Skeleton } from '@buffet-dex/uikit'
 import styled from 'styled-components'
-import { useTranslation } from 'contexts/Localization'
 import BigNumber from 'bignumber.js'
 import Balance from 'components/Balance'
 import { DeserializedPool } from 'state/types'
@@ -15,10 +14,10 @@ interface TotalStakedCellProps {
 
 const StyledCell = styled(BaseCell)`
   flex: 2 0 100px;
+  justify-content: center;
 `
 
 const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
-  const { t } = useTranslation()
   const { sousId, stakingToken, totalStaked, isAutoVault } = pool
   const { totalCakeInVault } = useCakeVault()
 
@@ -38,12 +37,15 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color="textSubtle" textAlign="left">
-          {t('Total staked')}
-        </Text>
         {totalStaked && totalStaked.gte(0) ? (
           <Flex height="20px" alignItems="center">
-            <Balance fontSize="16px" value={totalStakedBalance} decimals={0} unit={` ${stakingToken.symbol}`} />
+            <Balance
+              fontSize="16px"
+              fontWeight="700"
+              value={totalStakedBalance}
+              decimals={0}
+              unit={` ${stakingToken.symbol}`}
+            />
           </Flex>
         ) : (
           <Skeleton width="80px" height="16px" />

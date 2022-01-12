@@ -15,6 +15,7 @@ export const CellContent = styled(Flex)`
   flex-direction: column;
   justify-content: center;
   max-height: 40px;
+  align-self: self-start;
   ${Text} {
     line-height: 1;
   }

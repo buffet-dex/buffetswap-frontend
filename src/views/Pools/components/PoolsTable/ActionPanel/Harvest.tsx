@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Button, Text, useModal, Flex, Skeleton, Heading } from '@buffet-dex/uikit'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
@@ -15,7 +16,15 @@ import CollectModal from '../../PoolCard/Modals/CollectModal'
 interface HarvestActionProps extends DeserializedPool {
   userDataLoaded: boolean
 }
-
+const HarvestButton = styled(Button)`
+  background: rgba(239, 88, 35, 0.1);
+  font-size: 16px;
+  &:disabled,
+  &.pancake-button--disabled {
+    background: rgba(239, 88, 35, 0.1);
+    opacity: 0.5;
+  }
+`
 const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   sousId,
   poolCategory,
@@ -50,10 +59,10 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
 
   const actionTitle = (
     <>
-      <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
+      <Text fontSize="16px" bold color="secondary" as="span">
         {earningToken.symbol}{' '}
       </Text>
-      <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+      <Text fontSize="16px" bold color="textSubtle" as="span">
         {t('Earned')}
       </Text>
     </>
@@ -65,7 +74,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
         <ActionTitles>{actionTitle}</ActionTitles>
         <ActionContent>
           <Heading>0</Heading>
-          <Button disabled>{isCompoundPool ? t('Collect') : t('Harvest')}</Button>
+          <HarvestButton disabled>{isCompoundPool ? t('Collect') : t('Harvest')}</HarvestButton>
         </ActionContent>
       </ActionContainer>
     )
@@ -83,40 +92,40 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   }
 
   return (
-    <ActionContainer>
-      <ActionTitles>{actionTitle}</ActionTitles>
-      <ActionContent>
-        <Flex flex="1" pt="16px" flexDirection="column" alignSelf="flex-start">
-          <>
-            {hasEarnings ? (
-              <>
-                <Balance lineHeight="1" bold fontSize="20px" decimals={5} value={earningTokenBalance} />
-                {earningTokenPrice > 0 && (
-                  <Balance
-                    display="inline"
-                    fontSize="12px"
-                    color="textSubtle"
-                    decimals={2}
-                    prefix="~"
-                    value={earningTokenDollarBalance}
-                    unit=" USD"
-                  />
-                )}
-              </>
-            ) : (
-              <>
-                <Heading color="textDisabled">0</Heading>
-                <Text fontSize="12px" color="textDisabled">
-                  0 USD
-                </Text>
-              </>
-            )}
-          </>
-        </Flex>
-        <Button disabled={!hasEarnings} onClick={onPresentCollect}>
-          {isCompoundPool ? t('Collect') : t('Harvest')}
-        </Button>
-      </ActionContent>
+    <ActionContainer flexDirection="row">
+      <Flex flex="1" flexDirection="column" alignSelf="flex-start">
+        <ActionTitles>{actionTitle}</ActionTitles>
+        <>
+          {hasEarnings ? (
+            <>
+              <Balance lineHeight="1" bold fontSize="20px" decimals={5} value={earningTokenBalance} />
+              {earningTokenPrice > 0 && (
+                <Balance
+                  display="inline"
+                  fontSize="12px"
+                  color="textSubtle"
+                  decimals={2}
+                  prefix="~"
+                  value={earningTokenDollarBalance}
+                  unit=" USD"
+                />
+              )}
+            </>
+          ) : (
+            <>
+              <Heading fontSize="20px" fontWeight="700" color="textDisabled">
+                0
+              </Heading>
+              <Text fontSize="12px" color="textDisabled">
+                0 USD
+              </Text>
+            </>
+          )}
+        </>
+      </Flex>
+      <HarvestButton disabled={!hasEarnings} onClick={onPresentCollect}>
+        {isCompoundPool ? t('Collect') : t('Harvest')}
+      </HarvestButton>
     </ActionContainer>
   )
 }
