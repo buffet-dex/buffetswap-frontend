@@ -6,12 +6,14 @@ import useTheme from 'hooks/useTheme'
 import Container from 'components/Layout/Container'
 import { PageMeta } from 'components/Layout/Page'
 import Hero from './components/Hero'
-import { swapSectionData, earnSectionData, DISHSectionData } from './components/SalesSection/data'
+import { swapSectionData, buildSectionData, footerSectionData } from './components/SalesSection/data'
 import MetricsSection from './components/MetricsSection'
 import SalesSection from './components/SalesSection'
-import Footer from './components/Footer'
-import EarnSection from './components/EarnSection'
 import UserBanner from './components/UserBanner'
+import BuildSection from './components/BuildSection'
+import FooterSection from './components/FooterSection'
+import CakeDataRow from './components/CakeDataRow'
+import FarmsPoolsRow from './components/FarmsPoolsRow'
 
 const StyledHeroSection = styled(PageSection)`
   padding-top: 16px;
@@ -85,7 +87,8 @@ const Home: React.FC = () => {
         index={2}
         hasCurvedDivider={false}
       >
-        <EarnSection {...earnSectionData} />
+        <BuildSection {...buildSectionData} />
+        <FarmsPoolsRow />
       </PageSection>
       <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
@@ -93,15 +96,8 @@ const Home: React.FC = () => {
         index={2}
         hasCurvedDivider={false}
       >
-        <SalesSection {...DISHSectionData} />
-      </PageSection>
-      <PageSection
-        innerProps={{ style: HomeSectionContainerStyles }}
-        background={theme.colors.background}
-        index={2}
-        hasCurvedDivider={false}
-      >
-        <Footer />
+        <FooterSection {...footerSectionData} />
+        <CakeDataRow />
       </PageSection>
     </>
   )

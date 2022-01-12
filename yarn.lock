@@ -1240,10 +1240,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@buffet-dex/uikit@^0.2.1":
-  version "0.2.1"
-  resolved "https://npm.pkg.github.com/download/@buffet-dex/uikit/0.2.1/d47c78f6f1fe70227ce32a27d0aab8ed98f68a6b5152d3b9bcb9f16e149f17a1#4492159be1b3179976b7574609ef4d1ea53dca34"
-  integrity sha512-n8E7oRuDdUjtNd2JNaqIpdJihDzQgmn3JexRxPI5aIy3RrNFk1p65moUr4FHb0SCFLO6o21nT/PQRpbEQ9hGDQ==
+"@buffet-dex/uikit@^0.2.2":
+  version "0.2.2"
+  resolved "https://npm.pkg.github.com/download/@buffet-dex/uikit/0.2.2/ede3f1a4e6d9ff5bfbae063bfa335b77d173729c5fbb14e6e728dfabde9f8b95#ecb10740d6518d856052bec401061debffb188f3"
+  integrity sha512-Jr17lmxSKC1N35z53uEBr/jX3OuklZyHS8Tv1vwjBw6QCc94qIRLJMctHBrTYP00PJ4S96Bn3RQRx4HBSyFMCA==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"

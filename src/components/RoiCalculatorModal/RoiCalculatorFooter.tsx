@@ -73,44 +73,52 @@ const RoiCalculatorFooter: React.FC<RoiCalculatorFooterProps> = ({
   const apy = (getApy(apr, autoCompoundFrequency > 0 ? autoCompoundFrequency : 1, 365, performanceFee) * 100).toFixed(2)
 
   return (
-    <Footer p="16px" flexDirection="column">
+    <Footer p="17px" flexDirection="column">
       <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded((prev) => !prev)}>
-        {isExpanded ? t('Hide') : t('Details')}
+        {isExpanded ? (
+          <Text fontSize="20px" bold color="primary">
+            {t('Hide')}
+          </Text>
+        ) : (
+          <Text fontSize="20px" bold color="primary">
+            {t('Details')}
+          </Text>
+        )}
       </ExpandableLabel>
       {isExpanded && (
         <Box px="8px">
           <Grid gridTemplateColumns="2.5fr 1fr" gridRowGap="8px" gridTemplateRows={`repeat(${gridRowCount}, auto)`}>
             {isFarm && (
               <>
-                <Text color="textSubtle" small>
+                <Text color="textSubtleOpacity" fontSize="18px" bold lineHeight="23px">
                   {t('APR (incl. LP rewards)')}
                 </Text>
-                <Text small textAlign="right">
+                <Text fontSize="18px" bold color="textSubtle" textAlign="right">
                   {displayApr}%
                 </Text>
               </>
             )}
-            <Text color="textSubtle" small>
+            <Text color="textSubtleOpacity" fontSize="18px" bold lineHeight="23px">
               {isFarm ? t('Base APR (CAKE yield only)') : t('APR')}
             </Text>
-            <Text small textAlign="right">
+            <Text fontSize="18px" bold color="textSubtle" textAlign="right">
               {apr.toFixed(2)}%
             </Text>
-            <Text color="textSubtle" small>
+            <Text color="textSubtleOpacity" fontSize="18px" bold lineHeight="23px">
               {t('APY (%compoundTimes%x daily compound)', {
                 compoundTimes: autoCompoundFrequency > 0 ? autoCompoundFrequency : 1,
               })}
             </Text>
-            <Text small textAlign="right">
+            <Text fontSize="18px" bold color="textSubtle" textAlign="right">
               {apy}%
             </Text>
             {isFarm && (
               <>
-                <Text color="textSubtle" small>
+                <Text color="textSubtleOpacity" fontSize="18px" bold lineHeight="23px">
                   {t('Farm Multiplier')}
                 </Text>
                 <Flex justifyContent="flex-end" alignItems="flex-end">
-                  <Text small textAlign="right" mr="4px">
+                  <Text fontSize="18px" bold color="textSubtle" textAlign="right" mr="4px">
                     {multiplier}
                   </Text>
                   <span ref={multiplierRef}>

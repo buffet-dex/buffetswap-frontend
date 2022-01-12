@@ -1,17 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import styled from 'styled-components'
-import {
-  Modal,
-  Text,
-  Button,
-  Flex,
-  ButtonMenu,
-  Checkbox,
-  BalanceInput,
-  HelpIcon,
-  ButtonMenuItem,
-  useTooltip,
-} from '@buffet-dex/uikit'
+import { Modal, Text, Button, Flex, ButtonMenu, Checkbox, BalanceInput, HelpIcon, useTooltip } from '@buffet-dex/uikit'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -41,14 +30,14 @@ interface RoiCalculatorModalProps {
 }
 
 const StyledModal = styled(Modal)`
-  width: 345px;
+  max-width: 749px;
   & > :nth-child(2) {
     padding: 0;
   }
 `
 
 const ScrollableContainer = styled.div`
-  padding: 24px;
+  padding: 40px 48px 71px;
   max-height: 500px;
   overflow-y: auto;
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -58,12 +47,35 @@ const ScrollableContainer = styled.div`
 
 const FullWidthButtonMenu = styled(ButtonMenu)<{ disabled?: boolean }>`
   width: 100%;
-
+  background: none;
+  border: none;
+  justify-content: space-between;
   & > button {
-    width: 100%;
+    flex: none;
+    width: min-content;
+    padding: 12px 40px;
   }
 
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+`
+const ROIBalanceInput = styled(BalanceInput)`
+  padding: 16px 48px 16px 24px;
+  input {
+    font-size: 30px;
+    font-weight: 700;
+  }
+`
+const CalculatorButton = styled(Button)<{ isActive: boolean }>`
+  font-size: 16px;
+  font-weight: 16px;
+  ${({ isActive }) => {
+    if (!isActive) {
+      return `background: rgba(239, 88, 35, 0.1);
+      color: #EF5823;`
+    }
+    return ''
+  }} }
+
 `
 
 const RoiCalculatorModal: React.FC<RoiCalculatorModalProps> = ({
@@ -146,10 +158,10 @@ const RoiCalculatorModal: React.FC<RoiCalculatorModalProps> = ({
     >
       <ScrollableContainer>
         <Flex flexDirection="column" mb="8px">
-          <Text color="secondary" bold fontSize="12px" textTransform="uppercase">
+          <Text color="textSubtleOpacity" bold fontSize="16px">
             {t('%asset% staked', { asset: stakingTokenSymbol })}
           </Text>
-          <BalanceInput
+          <ROIBalanceInput
             currencyValue={`${conversionValue} ${conversionUnit}`}
             innerRef={balanceInputRef}
             placeholder="0.00"
@@ -159,37 +171,42 @@ const RoiCalculatorModal: React.FC<RoiCalculatorModalProps> = ({
             switchEditingUnits={toggleEditingCurrency}
             onFocus={onBalanceFocus}
           />
-          <Flex justifyContent="space-between" mt="8px">
-            <Button
+          <Flex justifyContent="flex-start" mt="8px">
+            <CalculatorButton
               scale="xs"
               p="4px 16px"
+              mr="16px"
+              height="45px"
               width="68px"
-              variant="tertiary"
+              variant="grey"
               onClick={() => setPrincipalFromUSDValue('100')}
             >
               $100
-            </Button>
-            <Button
+            </CalculatorButton>
+            <CalculatorButton
               scale="xs"
               p="4px 16px"
+              mr="16px"
               width="68px"
-              variant="tertiary"
+              height="45px"
+              variant="grey"
               onClick={() => setPrincipalFromUSDValue('1000')}
             >
               $1000
-            </Button>
-            <Button
+            </CalculatorButton>
+            <CalculatorButton
               disabled={stakingTokenBalance.lte(0) || !account}
-              scale="xs"
+              height="45px"
               p="4px 16px"
+              mr="16px"
               width="128px"
-              variant="tertiary"
+              variant="grey"
               onClick={() =>
                 setPrincipalFromUSDValue(getBalanceNumber(stakingTokenBalance.times(stakingTokenPrice)).toString())
               }
             >
-              {t('My Balance').toLocaleUpperCase()}
-            </Button>
+              {t('My Balance')}
+            </CalculatorButton>
             <span ref={targetRef}>
               <HelpIcon width="16px" height="16px" color="textSubtle" />
             </span>
@@ -198,13 +215,19 @@ const RoiCalculatorModal: React.FC<RoiCalculatorModalProps> = ({
           <Text mt="24px" color="secondary" bold fontSize="12px" textTransform="uppercase">
             {t('Staked for')}
           </Text>
-          <FullWidthButtonMenu activeIndex={stakingDuration} onItemClick={setStakingDuration} scale="sm">
-            <ButtonMenuItem variant="tertiary">{t('1D')}</ButtonMenuItem>
-            <ButtonMenuItem variant="tertiary">{t('7D')}</ButtonMenuItem>
-            <ButtonMenuItem variant="tertiary">{t('30D')}</ButtonMenuItem>
-            <ButtonMenuItem variant="tertiary">{t('1Y')}</ButtonMenuItem>
-            <ButtonMenuItem variant="tertiary">{t('5Y')}</ButtonMenuItem>
+          <FullWidthButtonMenu
+            activeIndex={stakingDuration}
+            onItemClick={setStakingDuration}
+            variant="calculator"
+            scale="sm"
+          >
+            <CalculatorButton height="45px">{t('1D')}</CalculatorButton>
+            <CalculatorButton height="45px">{t('7D')}</CalculatorButton>
+            <CalculatorButton height="45px">{t('30D')}</CalculatorButton>
+            <CalculatorButton height="45px">{t('1Y')}</CalculatorButton>
+            <CalculatorButton height="45px">{t('5Y')}</CalculatorButton>
           </FullWidthButtonMenu>
+
           {autoCompoundFrequency === 0 && (
             <>
               <Text mt="24px" color="secondary" bold fontSize="12px" textTransform="uppercase">
@@ -216,15 +239,16 @@ const RoiCalculatorModal: React.FC<RoiCalculatorModalProps> = ({
                 </Flex>
                 <Flex flex="6">
                   <FullWidthButtonMenu
+                    variant="calculator"
                     disabled={!compounding}
                     activeIndex={activeCompoundingIndex}
                     onItemClick={setCompoundingFrequency}
                     scale="sm"
                   >
-                    <ButtonMenuItem>{t('1D')}</ButtonMenuItem>
-                    <ButtonMenuItem>{t('7D')}</ButtonMenuItem>
-                    <ButtonMenuItem>{t('14D')}</ButtonMenuItem>
-                    <ButtonMenuItem>{t('30D')}</ButtonMenuItem>
+                    <CalculatorButton height="45px">{t('1D')}</CalculatorButton>
+                    <CalculatorButton height="45px">{t('7D')}</CalculatorButton>
+                    <CalculatorButton height="45px">{t('14D')}</CalculatorButton>
+                    <CalculatorButton height="45px">{t('30D')}</CalculatorButton>
                   </FullWidthButtonMenu>
                 </Flex>
               </Flex>
