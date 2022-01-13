@@ -74,19 +74,19 @@ function TransactionSubmittedContent({
   return (
     <Wrapper>
       <Section>
-        <AutoColumn gap="12px" justify="center">
-          <Text fontSize="30px" bold>
+        <AutoColumn gap="0px" justify="center">
+          <Text mb="24px" fontSize="30px" bold>
             {t('Transaction Submitted')}
           </Text>
           {chainId && hash && (
-            <Link fontSize="16px" external small href={getBscScanLink(hash, 'transaction', chainId)}>
+            <Link mb="32px" fontSize="16px" external small href={getBscScanLink(hash, 'transaction', chainId)}>
               {t('View on BscScan')}
             </Link>
           )}
           {currencyToAdd && library?.provider?.isMetaMask && (
             <Button
               variant="tertiary"
-              mt="12px"
+              mb="56px"
               width="fit-content"
               onClick={() => registerToken(token.address, token.symbol, token.decimals)}
             >
@@ -96,7 +96,7 @@ function TransactionSubmittedContent({
               </RowFixed>
             </Button>
           )}
-          <Button width="177px" scale="lg" onClick={onDismiss} mt="20px">
+          <Button width="177px" scale="lg" onClick={onDismiss} mb="113px">
             {t('Close')}
           </Button>
         </AutoColumn>

@@ -19,7 +19,10 @@ const Menu = (props) => {
 
   const activeMenuItem = getActiveMenuItem({ menuConfig: config(t), pathname })
   const activeSubMenuItem = getActiveSubMenuItem({ menuItem: activeMenuItem, pathname })
-
+  const networksList = [
+    { id: '1', network: 'Ethereum', isSupported: true },
+    { id: '2', network: 'Other', isSupported: false },
+  ]
   return (
     <UikitMenu
       userMenu={<UserMenu />}
@@ -28,6 +31,9 @@ const Menu = (props) => {
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
+      currentNetwork={networksList[0].network}
+      networks={networksList}
+      setNetworks
       links={config(t)}
       subLinks={activeMenuItem?.hideSubNav ? [] : activeMenuItem?.items}
       footerLinks={footerLinks(t)}

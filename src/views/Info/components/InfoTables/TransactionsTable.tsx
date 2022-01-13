@@ -207,14 +207,14 @@ const TransactionTable: React.FC<{
         <Flex flexDirection={['column', 'row']}>
           <RadioGroup onClick={() => handleFilter(undefined)}>
             <Radio onChange={() => null} scale="sm" checked={txFilter === undefined} />
-            <Text fontSize="16px" fontWeight="700" ml="8px">
+            <Text fontSize="16px" fontWeight="700" ml="8px" mr="32px">
               {t('All')}
             </Text>
           </RadioGroup>
 
           <RadioGroup onClick={() => handleFilter(TransactionType.SWAP)}>
             <Radio onChange={() => null} scale="sm" checked={txFilter === TransactionType.SWAP} />
-            <Text fontSize="16px" fontWeight="700" ml="8px">
+            <Text fontSize="16px" fontWeight="700" ml="8px" mr="32px">
               {t('Swaps')}
             </Text>
           </RadioGroup>
@@ -223,14 +223,14 @@ const TransactionTable: React.FC<{
         <Flex flexDirection={['column', 'row']}>
           <RadioGroup onClick={() => handleFilter(TransactionType.MINT)}>
             <Radio onChange={() => null} scale="sm" checked={txFilter === TransactionType.MINT} />
-            <Text fontSize="16px" fontWeight="700" ml="8px">
+            <Text fontSize="16px" fontWeight="700" ml="8px" mr="32px">
               {t('Adds')}
             </Text>
           </RadioGroup>
 
           <RadioGroup onClick={() => handleFilter(TransactionType.BURN)}>
             <Radio onChange={() => null} scale="sm" checked={txFilter === TransactionType.BURN} />
-            <Text fontSize="16px" fontWeight="700" ml="8px">
+            <Text fontSize="16px" fontWeight="700" ml="8px" mr="32px">
               {t('Removes')}
             </Text>
           </RadioGroup>

@@ -6,8 +6,8 @@ import { useTranslation } from 'contexts/Localization'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { getSrcSet } from './CompositeImage'
 
-const imagePath = '/images/home/lunar-bunny/'
-const imageSrc = 'bunny'
+const imagePath = '/images/home/buffet/'
+const imageSrc = 'buffet'
 
 const Hero = () => {
   const { t } = useTranslation()
@@ -15,12 +15,12 @@ const Hero = () => {
 
   return (
     <>
-      <Flex mb={['40px']} position="relative" justifyContent="center">
-        <Flex height={['192px', null, null, '100%']} width={['192px', null, null, '100%']}>
+      <Flex mt={account ? '180px' : ''} mb={['40px']} position="relative" justifyContent="center">
+        <Flex height={['auto', null, null, '100%']} width={['192px', null, null, '100%']}>
           <picture>
             <source type="image/webp" srcSet={getSrcSet(imagePath, imageSrc, '.webp')} />
             <source type="image/png" srcSet={getSrcSet(imagePath, imageSrc)} />
-            <img src={`${imagePath}${imageSrc}.png`} alt={t('Lunar bunny')} />
+            <img src={`${imagePath}${imageSrc}.png`} alt={t('Buffet')} />
           </picture>
         </Flex>
       </Flex>

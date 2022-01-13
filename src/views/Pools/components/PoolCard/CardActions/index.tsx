@@ -37,10 +37,10 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
         {harvest && (
           <>
             <Box display="inline">
-              <InlineText color="secondary" textTransform="uppercase" bold fontSize="12px">
+              <InlineText color="text" fontSize="14px">
                 {`${earningToken.symbol} `}
               </InlineText>
-              <InlineText color="textSubtle" textTransform="uppercase" bold fontSize="12px">
+              <InlineText color="text" fontSize="14px">
                 {t('Earned')}
               </InlineText>
             </Box>

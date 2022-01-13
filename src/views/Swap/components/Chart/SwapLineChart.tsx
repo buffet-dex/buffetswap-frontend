@@ -98,12 +98,12 @@ const LineChart = ({ data, setHoverValue, setHoverDate, isChangePositive, timeWi
           axisLine={false}
           tickLine={false}
           tickFormatter={(time) => time.toLocaleString(locale, dateFormatting)}
-          minTickGap={8}
+          minTickGap={7}
         />
         <YAxis dataKey="value" axisLine={false} tickLine={false} domain={['auto', 'auto']} hide />
         <CartesianGrid horizontal={false} strokeDasharray="3 3" fill="rgba(32, 32, 32, 0.02)" />
         <Tooltip
-          cursor={{ stroke: theme.colors.textDisabled }}
+          cursor={{ stroke: theme.colors.warning }}
           contentStyle={{ display: 'none' }}
           formatter={(tooltipValue, name, props) => (
             <HoverUpdater
@@ -114,7 +114,14 @@ const LineChart = ({ data, setHoverValue, setHoverDate, isChangePositive, timeWi
             />
           )}
         />
-        <Area dataKey="value" type="linear" stroke={colors.stroke} fill="none" strokeWidth={4} />
+        <Area
+          dataKey="value"
+          type="linear"
+          stroke={colors.stroke}
+          fill="none"
+          strokeWidth={4}
+          activeDot={{ stroke: colors.stroke, strokeWidth: 2, r: 8, strokeDasharray: '', fill: 'white' }}
+        />
       </AreaChart>
     </ResponsiveContainer>
   )
