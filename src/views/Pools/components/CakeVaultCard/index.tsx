@@ -70,7 +70,7 @@ const CakeVaultCard: React.FC<CakeVaultProps> = ({ pool, showStakedOnly }) => {
             />
           ) : (
             <>
-              <Text mb="10px" textTransform="uppercase" fontSize="12px" color="textSubtle" bold>
+              <Text mb="25px" fontSize="16px" color="textSubtle" bold>
                 {t('Start earning')}
               </Text>
               <ConnectWalletButton scale="lg" />

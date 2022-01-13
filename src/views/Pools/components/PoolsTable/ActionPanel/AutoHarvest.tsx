@@ -48,7 +48,7 @@ const AutoHarvestAction: React.FunctionComponent<AutoHarvestActionProps> = ({ us
 
   if (!account) {
     return (
-      <ActionContainer>
+      <ActionContainer flexDirection="column">
         <ActionTitles>{actionTitle}</ActionTitles>
         <ActionContent>
           <Heading>0</Heading>

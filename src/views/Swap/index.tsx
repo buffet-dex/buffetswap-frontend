@@ -4,6 +4,7 @@ import { CurrencyAmount, JSBI, Token, Trade } from '@buffet-dex/sdk'
 import {
   Text,
   ArrowDownIcon,
+  SwapArrowDownIcon,
   Box,
   useModal,
   Flex,
@@ -63,9 +64,8 @@ import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 import CurrencyInputHeader from './components/CurrencyInputHeader'
 
 const Label = styled(Text)`
-  font-size: 12px;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.secondary};
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.textSubtleOpacity};
 `
 
 export default function Swap({ history }: RouteComponentProps) {
@@ -394,12 +394,11 @@ export default function Swap({ history }: RouteComponentProps) {
                     <AutoColumn justify="space-between">
                       <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
                         <IconButton variant="light" scale="sm">
-                          <ArrowDownIcon
+                          <SwapArrowDownIcon
                             onClick={() => {
                               setApprovalSubmitted(false) // reset 2 step UI for approvals
                               onSwitchTokens()
                             }}
-                            color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'primary' : 'text'}
                           />
                         </IconButton>
                         {recipient === null && !showWrap && isExpertMode ? (
@@ -435,10 +434,10 @@ export default function Swap({ history }: RouteComponentProps) {
                     ) : null}
 
                     {showWrap ? null : (
-                      <AutoColumn gap="8px" style={{ padding: '0 16px' }}>
+                      <AutoColumn justify="flex-start" gap="8px" style={{ padding: '0 16px' }}>
                         {Boolean(trade) && (
                           <RowBetween align="center">
-                            <Label>{t('Price')}</Label>
+                            <Label>{t('Price')}:</Label>
                             <TradePrice
                               price={trade?.executionPrice}
                               showInverted={showInverted}

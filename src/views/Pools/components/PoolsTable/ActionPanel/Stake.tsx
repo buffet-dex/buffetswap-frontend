@@ -132,7 +132,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
 
   if (!account) {
     return (
-      <ActionContainer>
+      <ActionContainer flexDirection="column">
         <ActionTitles>
           <Text fontSize="14px" color="textSubtle" as="span">
             {t('Start staking')}
@@ -237,12 +237,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   }
 
   return (
-    <ActionContainer>
+    <ActionContainer flexDirection="column">
       <ActionTitles>
-        <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
+        <Text fontSize="14px" color="textSubtle" as="span">
           {t('Stake')}{' '}
         </Text>
-        <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+        <Text fontSize="14px" color="textSubtle" as="span">
           {stakingToken.symbol}
         </Text>
       </ActionTitles>

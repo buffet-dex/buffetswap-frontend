@@ -18,10 +18,10 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
 
   return (
-    <AutoColumn style={{ padding: '0 16px' }}>
+    <AutoColumn gap="24px" style={{ padding: '0 16px' }}>
       <RowBetween>
         <RowFixed>
-          <Text fontSize="14px" color="textSubtle">
+          <Text fontSize="16px" bold color="rgba(32, 32, 32, 0.8)">
             {isExactIn ? t('Minimum received') : t('Maximum sold')}
           </Text>
           <QuestionHelper
@@ -32,7 +32,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
           />
         </RowFixed>
         <RowFixed>
-          <Text fontSize="14px">
+          <Text fontSize="16px" bold color="rgba(32, 32, 32, 0.8)">
             {isExactIn
               ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${trade.outputAmount.currency.symbol}` ??
                 '-'
@@ -42,7 +42,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
       </RowBetween>
       <RowBetween>
         <RowFixed>
-          <Text fontSize="14px" color="textSubtle">
+          <Text fontSize="16px" bold color="rgba(32, 32, 32, 0.8)">
             {t('Price Impact')}
           </Text>
           <QuestionHelper
@@ -55,7 +55,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
 
       <RowBetween>
         <RowFixed>
-          <Text fontSize="14px" color="textSubtle">
+          <Text fontSize="16px" bold color="rgba(32, 32, 32, 0.8)">
             {t('Liquidity Provider Fee')}
           </Text>
           <QuestionHelper
@@ -70,7 +70,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             ml="4px"
           />
         </RowFixed>
-        <Text fontSize="14px">
+        <Text fontSize="16px" bold color="rgba(32, 32, 32, 0.8)">
           {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}
         </Text>
       </RowBetween>

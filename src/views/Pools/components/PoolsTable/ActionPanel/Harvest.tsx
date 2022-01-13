@@ -70,7 +70,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
 
   if (!account) {
     return (
-      <ActionContainer>
+      <ActionContainer flexDirection="column">
         <ActionTitles>{actionTitle}</ActionTitles>
         <ActionContent>
           <Heading>0</Heading>

@@ -81,7 +81,7 @@ const LineChart = ({ data, setHoverValue, setHoverDate }: LineChartProps) => {
             />
           )}
         />
-        <Area dataKey="value" type="linear" stroke="#EF5823" fill="none" strokeWidth={2} />
+        <Area dataKey="value" type="linear" stroke="#EF5823" fill="none" strokeWidth={2} activeDot={{ r: 4 }} />
       </AreaChart>
     </ResponsiveContainer>
   )

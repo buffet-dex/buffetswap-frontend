@@ -143,7 +143,7 @@ const BasicChart = ({
           </Dropdown>
         </Box>
       </Flex>
-      <Box height={isMobile ? '100%' : chartHeight} p={isMobile ? '0px' : '16px'} width="100%">
+      <Box height={isMobile ? '100%' : chartHeight} p={isMobile ? '0px' : '32px'} width="100%">
         <SwapLineChart
           data={pairPrices}
           setHoverValue={setHoverValue}

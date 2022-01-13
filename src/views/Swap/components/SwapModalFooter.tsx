@@ -48,7 +48,7 @@ export default function SwapModalFooter({
 
   return (
     <>
-      <SwapModalFooterContainer>
+      <SwapModalFooterContainer gap="15px">
         <RowBetween align="center">
           <Text fontSize="16px" bold color="rgba(32, 32, 32, 0.8)">
             {t('Price')}
@@ -137,7 +137,7 @@ export default function SwapModalFooter({
           scale="lg"
           onClick={onConfirm}
           disabled={disabledConfirm}
-          mt="12px"
+          mt="40px"
           id="confirm-swap-or-send"
           width="100%"
         >
