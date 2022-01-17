@@ -8,18 +8,19 @@ const MILLION = 1000000
 const TRILLION = 1000000000000
 
 const RoiCardWrapper = styled(Box)`
-  background: rgba(32, 32, 32, 0.05);
+  background: linear-gradient(180deg, #53dee9, #7645d9);
   padding: 1px;
   width: 100%;
-  border-radius: 30px;
+  border-radius: ${({ theme }) => theme.radii.default};
 `
 
 const RoiCardInner = styled(Box)`
-  position: relative;
-  height: 179px;
-  padding: 32px 28px 41px 32px;
-  border-radius: 30px;
+  height: 120px;
+  padding: 24px;
+  border-radius: ${({ theme }) => theme.radii.default};
+  background: ${({ theme }) => theme.colors.gradients.bubblegum};
 `
+
 const RoiInputContainer = styled(Box)`
   position: relative;
   & > input {
@@ -43,7 +44,6 @@ const RoiDisplayContainer = styled(Flex)`
 const RoiDollarAmount = styled(Text)<{ fadeOut: boolean }>`
   position: relative;
   overflow-x: auto;
-
   &::-webkit-scrollbar {
     height: 0px;
   }
@@ -66,17 +66,6 @@ const RoiDollarAmount = styled(Text)<{ fadeOut: boolean }>`
         width: 40px;
       }
   `}
-`
-const PencilIconButton = styled(IconButton)`
-  position: absolute;
-  height: 20px;
-  right: 28px;
-  top: 26px;
-  svg {
-    path {
-      fill: rgba(32, 32, 32, 0.5);
-    }
-  }
 `
 
 interface RoiCardProps {
@@ -123,13 +112,10 @@ const RoiCard: React.FC<RoiCardProps> = ({ earningTokenSymbol, calculatorState, 
   return (
     <RoiCardWrapper>
       <RoiCardInner>
-        <Text fontSize="16px" bold color="textSubtleOpacity">
+        <Text fontSize="12px" color="secondary" bold textTransform="uppercase">
           {t('ROI at current rates')}
         </Text>
-        <PencilIconButton scale="sm" variant="text" onClick={onEnterEditing}>
-          <PencilIcon />
-        </PencilIconButton>
-        <Flex justifyContent="space-between" mt="4px" height="auto">
+        <Flex justifyContent="space-between" mt="4px" height="36px">
           {mode === CalculatorMode.PRINCIPAL_BASED_ON_ROI ? (
             <>
               <RoiInputContainer>
@@ -152,20 +138,23 @@ const RoiCard: React.FC<RoiCardProps> = ({ earningTokenSymbol, calculatorState, 
             <>
               <RoiDisplayContainer onClick={onEnterEditing}>
                 {/* Dollar sign is separate cause its not supposed to scroll with a number if number is huge */}
-                <Text fontSize="30px" bold>
+                <Text fontSize="24px" bold>
                   $
                 </Text>
-                <RoiDollarAmount fontSize="30px" bold fadeOut={roiUSD > TRILLION}>
+                <RoiDollarAmount fontSize="24px" bold fadeOut={roiUSD > TRILLION}>
                   {roiUSD.toLocaleString('en', {
                     minimumFractionDigits: roiUSD > MILLION ? 0 : 2,
                     maximumFractionDigits: roiUSD > MILLION ? 0 : 2,
                   })}
                 </RoiDollarAmount>
               </RoiDisplayContainer>
+              <IconButton scale="sm" variant="text" onClick={onEnterEditing}>
+                <PencilIcon color="primary" />
+              </IconButton>
             </>
           )}
         </Flex>
-        <Text fontSize="16px" bold color="textSubtleOpacity">
+        <Text fontSize="12px" color="textSubtle">
           ~ {roiTokens} {earningTokenSymbol} (
           {roiPercentage.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
           %)
