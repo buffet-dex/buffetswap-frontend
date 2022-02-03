@@ -36,12 +36,6 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
     ],
   },
   {
-    label: t('Account'),
-    href: '/account',
-    icon: 'Account',
-    items: [],
-  },
-  {
     label: t('More'),
     href: '/info',
     icon: 'More',
@@ -49,13 +43,6 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
       {
         label: t('Info'),
         href: '/info',
-      },
-      {
-        type: DropdownMenuItemType.DIVIDER,
-      },
-      {
-        label: t('Leaderboard'),
-        href: '/teams',
       },
       {
         type: DropdownMenuItemType.DIVIDER,

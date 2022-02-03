@@ -9,7 +9,6 @@ import config from './config/config'
 import UserMenu from './UserMenu'
 import { getActiveMenuItem, getActiveSubMenuItem } from './utils'
 import { footerLinks } from './config/footerConfig'
-import GlobalSettings from './GlobalSettings'
 
 const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
@@ -20,7 +19,7 @@ const Menu = (props) => {
   const activeMenuItem = getActiveMenuItem({ menuConfig: config(t), pathname })
   const activeSubMenuItem = getActiveSubMenuItem({ menuItem: activeMenuItem, pathname })
   const networksList = [
-    { id: '1', network: 'Ethereum', isSupported: true },
+    { id: '1', network: 'Avalanche', isSupported: true },
     { id: '2', network: 'Other', isSupported: false },
   ]
   return (
@@ -41,7 +40,6 @@ const Menu = (props) => {
       activeSubItem={activeSubMenuItem?.href}
       buyCakeLabel={t('Buy CAKE')}
       cakePriceUsd={cakePriceUsd.toNumber()}
-      globalMenu={<GlobalSettings color="textSubtleOpacity" />}
       {...props}
     />
   )
