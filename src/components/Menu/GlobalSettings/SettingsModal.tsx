@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Text, PancakeToggle, Toggle, Flex, Modal, InjectedModalProps, ThemeSwitcher } from '@buffet-dex/uikit'
+import { Text, PancakeToggle, Toggle, Flex, Modal, InjectedModalProps } from '@buffet-dex/uikit'
 import {
   useAudioModeManager,
   useExpertModeManager,
@@ -9,11 +9,9 @@ import {
 } from 'state/user/hooks'
 import { useTranslation } from 'contexts/Localization'
 import { useSwapActionHandlers } from 'state/swap/hooks'
-import useTheme from 'hooks/useTheme'
 import QuestionHelper from '../../QuestionHelper'
 import TransactionSettings from './TransactionSettings'
 import ExpertModal from './ExpertModal'
-import GasSettings from './GasSettings'
 
 const ScrollableContainer = styled(Flex)`
   flex-direction: column;
@@ -32,7 +30,6 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
   const { onChangeRecipient } = useSwapActionHandlers()
 
   const { t } = useTranslation()
-  const { theme, isDark, toggleTheme } = useTheme()
 
   if (showConfirmExpertModal) {
     return (
@@ -64,17 +61,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
       style={{ maxWidth: '420px' }}
     >
       <ScrollableContainer>
-        <Flex pb="24px" flexDirection="column">
-          <Text bold textTransform="uppercase" fontSize="12px" color="secondary" mb="24px">
-            {t('Global')}
-          </Text>
-          <Flex justifyContent="space-between">
-            <Text mb="24px">{t('Dark mode')}</Text>
-            <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
-          </Flex>
-          <GasSettings />
-        </Flex>
-        <Flex pt="24px" flexDirection="column" borderTop={`1px ${theme.colors.cardBorder} solid`}>
+        <Flex flexDirection="column">
           <Text bold textTransform="uppercase" fontSize="12px" color="secondary" mb="24px">
             {t('Swaps & Liquidity')}
           </Text>

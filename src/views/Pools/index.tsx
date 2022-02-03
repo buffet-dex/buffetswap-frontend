@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 import { formatUnits } from 'ethers/lib/utils'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image, Text } from '@buffet-dex/uikit'
+import { Heading, Flex, Text } from '@buffet-dex/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -22,8 +22,6 @@ import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
 import PageHeader from 'components/PageHeader'
-import SearchInput from 'components/SearchInput'
-import Select, { OptionProps } from 'components/Select/Select'
 import { DeserializedPool } from 'state/types'
 import { useUserPoolStakedOnly, useUserPoolsViewMode } from 'state/user/hooks'
 import { ViewMode } from 'state/user/actions'
@@ -58,34 +56,6 @@ const PoolControls = styled.div`
   }
 `
 
-const FilterContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 8px 0px;
-  margin-top: 10px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    width: auto;
-    padding: 0;
-  }
-`
-
-const LabelWrapper = styled(Flex)`
-  align-items: center;
-  > ${Text} {
-    width: 100%;
-    margin-right: 10px;
-    font-size: 14px;
-  }
-`
-
-const ControlStretch = styled(Flex)`
-  > div {
-    flex: 1;
-  }
-`
-
 const NUMBER_OF_POOLS_VISIBLE = 12
 
 const Pools: React.FC = () => {
@@ -97,8 +67,8 @@ const Pools: React.FC = () => {
   const [viewMode, setViewMode] = useUserPoolsViewMode()
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const { observerRef, isIntersecting } = useIntersectionObserver()
-  const [searchQuery, setSearchQuery] = useState('')
-  const [sortOption, setSortOption] = useState('hot')
+  const [searchQuery] = useState('')
+  const [sortOption] = useState('hot')
   const chosenPoolsLength = useRef(0)
   const {
     userData: { dishAtLastUserAction, userShares },
@@ -156,14 +126,6 @@ const Pools: React.FC = () => {
   }, [isIntersecting])
 
   const showFinishedPools = location.pathname.includes('history')
-
-  const handleChangeSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value)
-  }
-
-  const handleSortOptionChange = (option: OptionProps): void => {
-    setSortOption(option.value)
-  }
 
   const sortPools = (poolsToSort: DeserializedPool[]) => {
     switch (sortOption) {
@@ -287,37 +249,6 @@ const Pools: React.FC = () => {
             viewMode={viewMode}
             setViewMode={setViewMode}
           />
-          <FilterContainer>
-            <LabelWrapper>
-              <Text>{t('Sort by')}</Text>
-              <ControlStretch>
-                <Select
-                  options={[
-                    {
-                      label: t('Hot'),
-                      value: 'hot',
-                    },
-                    {
-                      label: t('APR'),
-                      value: 'apr',
-                    },
-                    {
-                      label: t('Earned'),
-                      value: 'earned',
-                    },
-                    {
-                      label: t('Total staked'),
-                      value: 'totalStaked',
-                    },
-                  ]}
-                  onOptionChange={handleSortOptionChange}
-                />
-              </ControlStretch>
-            </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
-              <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
-            </LabelWrapper>
-          </FilterContainer>
         </PoolControls>
         {showFinishedPools && (
           <Text fontSize="20px" color="failure" pb="32px">
@@ -331,14 +262,6 @@ const Pools: React.FC = () => {
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={observerRef} />
-        <Image
-          mx="auto"
-          mt="12px"
-          src="/images/decorations/3d-syrup-bunnies.png"
-          alt="Pancake illustration"
-          width={192}
-          height={184.5}
-        />
       </Page>
     </>
   )
